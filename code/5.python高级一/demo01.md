@@ -1,0 +1,1 @@
+[验证代码见](pythonAdvanced5Verify)

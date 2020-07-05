@@ -68,7 +68,31 @@ python高级用法知识，涵盖多线程、并发、协程、网络编程，�
 
 
 
+# 5.python高级知识-进阶知识
 
+[1.GIL全局解释器锁](./content/5.python高级知识-进阶知识/1.GIL全局解释器锁.md)
+
+[2.深拷贝、浅拷贝](./content/5.python高级知识-进阶知识/2.深拷贝、浅拷贝.md)
+
+[3.私有化](./content/5.python高级知识-进阶知识/3.私有化.md)
+
+[4.import导入模块](./content/5.python高级知识-进阶知识/4.import导入模块.md)
+
+[5.多继承以及MRO顺序](./content/5.python高级知识-进阶知识/5.多继承以及MRO顺序.md)
+
+[6.再论静态方法和类方法](./content/5.python高级知识-进阶知识/6.再论静态方法和类方法.md)
+
+[7.再议封装、多态、继承](./content/5.python高级知识-进阶知识/7.再议封装、多态、继承.md)
+
+[8.property属性](./content/5.python高级知识-进阶知识/8.property属性.md)
+
+[9.魔法属性](./content/5.python高级知识-进阶知识/9.魔法属性.md)
+
+[10.with与上下文管理器](./content/5.python高级知识-进阶知识/10.with与上下文管理器.md)
+
+
+
+# 6.闭包与装饰器
 
 
 
