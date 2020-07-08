@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- /fasttmp/mkdist-qt-4.3.5-1211793125/qtopia-core-opensource-src-4.3.5/doc/src/qt4-intro.qdoc -->
+<head>
+  <title>Qt 4.3: What's New in Qt 4.3</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">What's New in Qt 4.3<br /><small></small></h1>
+<p>Qt 4.3 provides many improvements and enhancements over the previous releases in the Qt 4 series. This documents covers the most important features in this release, separated by category.</p>
+<p>A comprehensive list of changes between Qt 4.2 and Qt 4.3 is included in the <tt>changes-4.3.0</tt> file <a href="http://www.trolltech.com/developer/notes/changes/changes-4.3.0">available online</a>. Changes between this release and the previous release are provided in the <tt>changes-4.3.5</tt> file (also <a href="http://www.trolltech.com/developer/notes/changes/changes-4.3.5">available online</a>).</p>
+<p>A list of other Qt 4 features can be found on the <b><a href="qt4-intro.html">What's New in Qt 4</a></b> page.</p>
+<p><b>Highlights</b></p>
+<ul><li><a href="#main-window-styles">Main Window Styles</a></li>
+<li><a href="#qtscript-application-scripting-with-ecmascript">QtScript - Application Scripting with ECMAScript</a></li>
+<li><a href="#improved-graphics-support">Improved Graphics Support</a></li>
+<li><a href="#new-widgets-and-desktop-integration-enhancements">New Widgets and Desktop Integration Enhancements</a></li>
+<li><a href="#qt-designer-improvements">Qt Designer Improvements</a></li>
+<li><a href="#extended-and-improved-infrastructure">Extended and Improved Infrastructure</a></li>
+<li><a href="#qtopia-core">Qtopia Core</a></li>
+</ul>
+<a name="main-window-styles"></a>
+<h2>Main Window Styles</h2>
+<p>The <a href="application.html">main window classes</a> now provide support for different main window paradigms, such as those found in Visual Studio or KDevelop.</p>
+<p>Dock widgets occupying the same area can now be arranged in horizontal, vertical or collapsible tabs. Collapsible tabs are oriented according to the location of dock widgets around the main window's central area.</p>
+  <table align="center" width="80%">
+  <tr><td>
+  <p><img src="images/mainwindow-vertical-tabs.png" /></p>
+  </td><td>
+  <p><img src="images/mainwindow-custom-dock.png" /></p>
+  </td></tr>
+  </table>
+  <p>API improvements to <a href="qdockwidget.html">QDockWidget</a> enable dock widgets to be given custom title bars and window styles, and also include support for vertical title bars.</p>
+<p align="center"><img src="images/mainwindow-vertical-dock.png" /></p><p>Additionally, support for animations has been extended to tool bars, resulting in more sophisticated effects when tool bars and dock widgets are rearranged. See the <a href="demos-mainwindow.html">Main Window</a> demonstration for an extensive tour of these new features.</p>
+<a name="qtscript-application-scripting-with-ecmascript"></a>
+<h2>QtScript - Application Scripting with ECMAScript</h2>
+<p>This release introduces the <a href="qtscript.html">QtScript module</a>, providing a script engine for the ECMAScript language, based on the <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262</a> standard, that is designed to enable easier integration of scripting facilities into end-user applications.</p>
+<p align="center"><img src="images/qtscript-context2d.png" /></p><p>Scripts access application functionality via QObjects that are specifically created and exposed by each application. Information about the available child objects, properties, signals and slots is provided by Qt's <a href="object.html">object model</a>. This means that, in many cases, script-enabling an application requires little effort on the part of the developer.</p>
+<p align="center"><img src="images/qtscript-calculator.png" /></p><p>A set of examples are included to show how classes and functions written in C++ can be exposed to the script engine, including <a href="script-calculator.html">a port</a> of the <a href="widgets-calculator.html">Calculator example</a> which shows how a <a href="qtscript.html">QtScript</a> can be used with a user interface created with <i>Qt Designer</i>.</p>
+<a name="improved-graphics-support"></a>
+<h2>Improved Graphics Support</h2>
+<p>To improve graphics performance on Windows, this release includes an experimental Direct3D paint engine to provide native hardware acceleration on Windows systems with suitable graphics hardware. Although we have conducted internal testing with a selection of graphics cards, we cannot guarantee that this feature will work correctly with all hardware or drivers. Please report feedback on this feature via the <a href="http://www.trolltech.com/developer/task-tracker">Task Tracker</a>.</p>
+<p>Qt's interoperability with the Scalable Vector Graphics (SVG) file format has been improved by the introduction of the <a href="qsvggenerator.html">QSvgGenerator</a> class, a paint device that can be used to save Qt rendering operations in the form of an SVG drawing. This class can be used alongside the existing <a href="qsvgwidget.html">QSvgWidget</a> and <a href="qsvgrenderer.html">QSvgRenderer</a> classes to provide full input/output support for vector graphics.</p>
+<p>The OpenGL paint engine has been heavily improved to take advantage of new features in modern graphics hardware. Through the extensive usage of fragment programs, users with suitable graphics hardware can expect to experience much faster and higher quality rendering when OpenGL is used. Support for an additional anti-aliasing mode for OpenGL allows developers to choose between high quality rendering or speed when older or less-capable hardware is used.</p>
+<p>The <a href="qtransform.html">QTransform</a> class adds support for arbitrary matrix operations on two-dimensional coordinates, allowing perspective transformations to be applied to 2D graphics.</p>
+<p>Support for set operations on paths has been added to <a href="qpainterpath.html">QPainterPath</a>, improving support for clipping and animations.</p>
+<p>An object bounding mode for gradients that enables them to be defined in terms of the bounding rectangle of the objects they are applied to.</p>
+<a name="new-widgets-and-desktop-integration-enhancements"></a>
+<h2>New Widgets and Desktop Integration Enhancements</h2>
+<p>Applications running on Windows Vista automatically support animations and other Vista-related enhancements through the use of the new <a href="qwindowsvistastyle.html">QWindowsVistaStyle</a> class, providing a widget style that gives Qt applications a native look and feel on Windows Vista.</p>
+<p>Qt 4.3 also provides a number of new and redesigned widgets, including the <a href="qwizard.html">QWizard</a> class which supports application wizard functionality in a variety of native styles, including one for Windows Vista applications.</p>
+<p><table align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/qtwizard-modern1.png" /></td><td><img src="images/qtwizard-mac2.png" /></td><td><img src="images/qtwizard-aero2.png" /></td></tr>
+</table></p>
+<p>Unified toolbar support on Mac OS X improves the look and feel of applications by blending adjacent toolbars and window title bars together.</p>
+<p align="center"><img src="images/macintosh-unified-toolbar.png" /></p><p>Qt's range of model/view classes has been expanded to include the <a href="qcolumnview.html">QColumnView</a> class, an animated list view similar to that found on small-screen devices.</p>
+<p>The <a href="qmdiarea.html">QMdiArea</a> class provides an Multiple Document Interface (MDI) widget that is intended to provide a more consistent API for developers to use and more predictable behavior for users. The API has been designed to be very similar to that provided by <a href="qworkspace.html">QWorkspace</a> in order to make porting between the two widgets a straightforward task.</p>
+<p align="center"><img src="images/plastique-filedialog.png" /></p><p>On X11, <a href="qfiledialog.html">QFileDialog</a> has been optimized to perform better with directories containing large numbers of files, automatically updates when files are added or removed, and has a brand new look and feel.</p>
+<p>A platform-independent way to notify users about activity in a window is provided by the <a href="qapplication.html#alert">QApplication::alert</a>() function. This alerts the user by using the appropriate notification mechanism for their chosen platform and environment.</p>
+<p><a href="qwidget.html">QWidget</a> now provides a <a href="qwidget.html#locale-prop">locale</a> property that can be used to give individual windows, dialogs and widgets different look and feel different languages and regions.</p>
+<p>Almost all standard widgets can be styled with <a href="stylesheet.html">Qt Style Sheets</a>, making it easier to customize the appearance of applications.</p>
+<p>An enhanced layout system accommodates many special cases for Mac OS X, enabling Mac OS X style to provide a faithful Mac look and feel.</p>
+<a name="qt-designer-improvements"></a>
+<h2>Qt Designer Improvements</h2>
+<p><i>Qt Designer</i> has seen a number of improvements since Qt 4.2, many of which are focused on making the application easier to use. Other improvements track other additions and new features in Qt, such as new widgets and support for application scripting.</p>
+<p>Support for <a href="designer-editing-mode.html#the-property-editor">dynamic properties</a> enables standard Qt widgets and user-created forms to be customized with extra information from within <i>Qt Designer</i>.</p>
+<p align="center"><img src="images/designer-adding-dynamic-property.png" /></p><p>The property editor has been updated to support the new margin and spacing properties added to Qt as part of improvements to the layout system.</p>
+<p>Selection handling has been improved to allow properties to be changed when more than one widget has been selected.</p>
+<p>Drag and drop support has been extended to allow widgets to be dragged to the object inspector. Additionally, images can be dragged from the resource editor to the action editor and to image/icon properties in the property editor.</p>
+<p>A new preferences dialog introduces the ability to set tool window fonts (added at the request of Japanese customers).</p>
+<p>Improved selection behaviour in the signal slot editor by introducing transparent connection labels and ensuring that widgets are selected in preference to connection labels.</p>
+<p>Improved handling of promoted widgets makes it easier and more convenient to work with placeholders for custom widgets; promotion candidates are now displayed in the form's context menu. Multiple widgets in a selection can now be promoted at the same time.</p>
+<p>Custom widget plugin support has been extended to provide error reporting for cases where plugins fail to load. Additionally, <i>Qt Designer</i> is now able to scan for newly installed custom widget plugins.</p>
+<p><i>Qt Designer</i>'s configuration options have been extended to allow the default form editor grid setting to be set, enabling the grid setting to be specified on a per-form basis.</p>
+<p>Enabled multi-line plain and rich text editing for labels.</p>
+<a name="extended-and-improved-infrastructure"></a>
+<h2>Extended and Improved Infrastructure</h2>
+<p>The <a href="qtnetwork.html">QtNetwork</a> module has been extended to include support for Secure Socket Layer (SSL) communications via the <a href="qsslsocket.html">QSslSocket</a> class. As a result, <a href="qhttp.html">QHttp</a> is now able to provide support for the HTTPS protocol.</p>
+<p>Qt's network proxying facilties have been extended to cover HTTP CONNECT proxying, and also include support for Cram-MD5 and NTLM authentication.</p>
+<p><a href="linguist-manual.html#qt-linguist">Qt Linguist</a> has been extended to provide support for XML Localization Interchange File Format (XLIFF) files, improving interoperability with third party tools and services that support this format.</p>
+<p>The <a href="qtxml.html">QtXml</a> module has been expanded with classes to provide a streaming API for handling XML: <a href="qxmlstreamreader.html">QXmlStreamReader</a> and <a href="qxmlstreamwriter.html">QXmlStreamWriter</a> complement Qt's existing range of SAX and DOM-based classes.</p>
+<p>Support for the MSYS environment for MinGW on Windows.</p>
+<p>Qt's threading has been enhanced to include support for timed try-locks in <a href="qmutex.html">QMutex</a>, <a href="qreadwritelock.html">QReadWriteLock</a> and <a href="qsemaphore.html">QSemaphore</a>. Additionally, a <a href="qt.html#ConnectionType-enum">BlockingQueuedConnection</a> connection type has been introduced to complement <a href="qt.html#ConnectionType-enum">DirectConnection</a> and <a href="qt.html#ConnectionType-enum">QueuedConnection</a>.</p>
+<p><a href="qthread.html">QThread</a> has been updated to provide an <a href="qthread.html#idealThreadCount">idealThreadCount()</a> function. This takes various system-specific factors into account to determine the optimal number of threads that can be run on a given system.</p>
+<p>The event system <a href="qcoreapplication.html#postEvent">has been extended</a> to allow events to be posted with specific priorities, enabling applications to prioritize certain types of event depending on the activities they are performing.</p>
+<p><a href="qdir.html">QDir</a> has been enhanced with the <a href="qdir.html#addSearchPath">addSearchPath()</a> function to provide an extensible mechanism, allowing search paths to be added at run time to <a href="resources.html">Qt's resource system</a>.</p>
+<p>The new <a href="qdiriterator.html">QDirIterator</a> class provides a convenient and less resource-intensive way to traverse large directory structures.</p>
+<a name="qtopia-core"></a>
+<h2>Qtopia Core</h2>
+<p>As in Qt 4.2, many improvements to Qt's graphics support and rendering performance are specific to Qtopia Core. These include general speed optimizations, accelerated graphics API improvements, and additional support for OpenGL ES.</p>
+<p>A new font subsystem has been implemented that allows glyphs rendered at run time to be shared between applications. A new pre-rendered font format (QPF2) has also been implemented together with a new <tt>makeqpf</tt> tool to generate them.</p>
+<p>In addition, support for custom font engine plugins has been added through the <a href="qabstractfontengine.html">QAbstractFontEngine</a> and <a href="qfontengineplugin.html">QFontEnginePlugin</a> classes.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

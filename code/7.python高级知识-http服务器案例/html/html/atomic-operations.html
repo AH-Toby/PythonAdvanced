@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- /fasttmp/mkdist-qt-4.3.5-1211793125/qtopia-core-opensource-src-4.3.5/doc/src/atomic-operations.qdoc -->
+<head>
+  <title>Qt 4.3: Implementing Atomic Operations</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">Implementing Atomic Operations<br /><small></small></h1>
+<p>Qt uses an optimization called <a href="shared.html">implicit sharing</a> for many of its value classes.</p>
+<p>Starting with Qt 4, all of Qt's implicitly shared classes can safely be copied across threads like any other value classes, i.e&#x2e;, they are fully <a href="threads.html#reentrancy-and-thread-safety">reentrant</a>. This is accomplished by implementing reference counting operations using atomic hardware instructions on all the different platforms supported by Qt.</p>
+<p>To support a new architecture, it is important to ensure that these platform-specific atomic operations are implemented in a corresponding header file (<tt>qatomic_ARCH.h</tt>), and that this file is located in Qt's <tt>src/corelib/arch</tt> directory. For example, the Intel 80386 implementation is located in <tt>src/corelib/arch/qatomic_i386.h</tt>.</p>
+<p>Currently, Qt assumes that the following operations have been implemented:</p>
+<ul>
+<li><a href="#1">int q_atomic_test_and_set_int()</a></li>
+<li><a href="#2">int q_atomic_test_and_set_acquire_int()</a></li>
+<li><a href="#3">int q_atomic_test_and_set_release_int()</a></li>
+<li><a href="#4">int q_atomic_test_and_set_ptr()</a></li>
+<li><a href="#5">int q_atomic_increment()</a></li>
+<li><a href="#6">int q_atomic_decrement()</a></li>
+<li><a href="#7">int q_atomic_set_int()</a></li>
+<li><a href="#8">int q_atomic_set_ptr()</a></li>
+<li><a href="#9">int q_atomic_fetch_and_add_int()</a></li>
+<li><a href="#10">int q_atomic_fetch_and_add_acquire_int()</a></li>
+<li><a href="#11">int q_atomic_fetch_and_add_release_int()</a></li>
+</ul>
+<p>Note that these functions must be atomic with respect to both interrupts and multiple processors.</p>
+<p><b>Warning:</b> The functions mentioned in this document are used internally by Qt and are not part of the public API. They may change in future versions of Qt. The purpose of this document is to aid people interested in porting Qt to a new architecture.</p>
+<hr /><a name="member-documentation"></a>
+<h3>Member Documentation</h3>
+<a name="1"></a><a name="int-q-atomic-test-and-set-int-volatile-int-ptr-int-expected-int-newval"></a>
+<h4>int q_atomic_test_and_set_int (volatile int *ptr, int expected, int newval)</h4>
+<p>Atomic test-and-set for integers.</p>
+<pre> if (*ptr == expected) {
+     *ptr = newval;
+     return !0;
+ }
+ return 0;</pre>
+<p>If the value in memory pointed to by <i>ptr</i> is the <i>expected</i> value, this function assigns <i>newval</i> to <i>ptr</i> and returns a non-zero value. If the value in memory pointed to by <i>ptr</i> is <i>not</i> the <i>expected</i> value, this function does nothing and returns zero.</p>
+<p>There are 3 variants of the test-and-set integer function: Each variant implies a different memory semantic, i.e&#x2e; the relation of memory operations before or after the test-and-set operation. Since modern hardware can reorder memory operations to improve performance, these functions are used to ensure the order of memory operations (often called a <i>memory barrier</i>).</p>
+<p><b>Note:</b> This variant of the test-and-set integer function implies that memory semantic is unspecified.</p>
+<p>See also <a href="#4">q_atomic_test_and_set_ptr()</a>.</p>
+<a name="2"></a><a name="int-q-atomic-test-and-set-acquire-int-volatile-int-ptr-int-expected-int-newval"></a>
+<h4>int q_atomic_test_and_set_acquire_int (volatile int *ptr, int expected, int newval)</h4>
+<p>This function behaves essentially like the above function.</p>
+<p><b>Note:</b> This variant of the test-and-set integer function implies that the atomic test-and-set operation must be performed before memory operations after the test-and-set.</p>
+<a name="3"></a><a name="int-q-atomic-test-and-set-release-int-volatile-int-ptr-int-expected-int-newval"></a>
+<h4>int q_atomic_test_and_set_release_int (volatile int *ptr, int expected, int newval)</h4>
+<p>This function behaves essentially like the above function.</p>
+<p><b>Note:</b> This variant of the test-and-set integer function implies that all memory operations must be performed before the test-and-set.</p>
+<a name="4"></a><a name="int-q-atomic-test-and-set-ptr-volatile-void-ptr-void-expected-void-newval"></a>
+<h4>int q_atomic_test_and_set_ptr (volatile void *ptr, void *expected, void *newval)</h4>
+<p>Atomic test-and-set for pointers.</p>
+<pre> if (*ptr == expected) {
+     *ptr = newval;
+     return !0;
+ }
+ return 0;</pre>
+<p>If the value in memory pointed to by <i>ptr</i> is the <i>expected</i> value, this function assigns <i>newval</i> to <i>ptr</i> and returns a non-zero value. If the value in memory pointed to by <i>ptr</i> is <i>not</i> the <i>expected</i> value, this function does nothing and returns zero.</p>
+<p>See also <a href="#1">q_atomic_test_and_set_int()</a>.</p>
+<a name="5"></a><a name="int-q-atomic-increment-volatile-int-ptr"></a>
+<h4>int q_atomic_increment (volatile int *ptr)</h4>
+<p>Atomic integer increment.</p>
+<pre> ++(*ptr);
+ return *ptr ? !0 : 0;</pre>
+<p>Increments the value in memory pointed to by <i>ptr</i>. This function returns zero if the new value of <i>*ptr</i> is zero; otherwise it returns a non-zero value.</p>
+<p><b>Tip:</b> Depending on the architecture, it may be easier to return the new value after incrementing <i>*ptr</i>:</p>
+<pre> return ++(*ptr);</pre>
+<p>Another option is to return the zero-flag that is set by some processors in control or status registers:</p>
+<pre> ++(*ptr);
+ return !(ControlRegister &amp; ZeroFlag);</pre>
+<p>See also <a href="#6">q_atomic_decrement()</a>.</p>
+<a name="6"></a><a name="int-q-atomic-decrement-volatile-int-ptr"></a>
+<h4>int q_atomic_decrement (volatile int *ptr)</h4>
+<p>Atomic integer decrement.</p>
+<pre> --(*ptr);
+ return *ptr ?  : 0;</pre>
+<p>Decrements the value in memory pointed to by <i>ptr</i>. This function returns zero if the new value of <i>*ptr</i> is zero; otherwise it returns a non-zero value.</p>
+<p><b>Tip:</b> Depending on the architecture, it may be easier to return the new value after incrementing <i>*ptr</i>:</p>
+<pre> return --(*ptr);</pre>
+<p>Another option is to return the zero-flag that is set by some processors in control or status registers:</p>
+<pre> --(*ptr);
+ return !(ControlRegister &amp; ZeroFlag);</pre>
+<p>See also <a href="#5">q_atomic_increment()</a>.</p>
+<a name="7"></a><a name="int-q-atomic-set-int-volatile-int-ptr-int-newval"></a>
+<h4>int q_atomic_set_int (volatile int *ptr, int newval)</h4>
+<p>Atomic fetch-and-store for integers.</p>
+<pre> tmp = *ptr;
+ *ptr = newval;
+ return tmp;</pre>
+<p>Sets the value in memory pointed to by <i>ptr</i> to <i>newval</i> and returns the previous value of <i>*ptr</i>.</p>
+<p>See also <a href="#8">q_atomic_set_ptr()</a>.</p>
+<a name="8"></a><a name="void-q-atomic-set-ptr-volatile-void-ptr-void-newval"></a>
+<h4>void *q_atomic_set_ptr (volatile void *ptr, void *newval)</h4>
+<p>Atomic fetch-and-store for pointers.</p>
+<pre> tmp = *ptr;
+ *ptr = newval;
+ return tmp;</pre>
+<p>Sets the value in memory pointed to by <i>ptr</i> to <i>newval</i> and returns the previous value of <i>*ptr</i>.</p>
+<p>See also <a href="#7">q_atomic_set_int()</a>.</p>
+<a name="9"></a><a name="int-q-atomic-fetch-and-add-int-volatile-int-ptr-int-value"></a>
+<h4>int q_atomic_fetch_and_add_int (volatile int *ptr, int value)</h4>
+<p>Atomic fetch-and-add for integers.</p>
+<pre> tmp = *ptr;
+ *ptr += value;
+ return tmp;</pre>
+<p>Adds the value in memory pointed to by <i>ptr</i> with <i>value</i> and returns the previous value of <i>*ptr</i>;</p>
+<p>There are 3 variants of the test-and-set integer function: Each variant implies a different memory semantic, i.e&#x2e; the relation of memory operations before or after the test-and-set operation. Since modern hardware can reorder memory operations to improve performance, these functions are used to ensure the order of memory operations (often called a <i>memory barrier</i>).</p>
+<p><b>Note:</b> This variant of the test-and-set integer function implies that memory semantic is unspecified.</p>
+<a name="10"></a><a name="int-q-atomic-fetch-and-add-acquire-int-volatile-int-ptr-int-value"></a>
+<h4>int q_atomic_fetch_and_add_acquire_int (volatile int *ptr, int value)</h4>
+<p>This function behaves essentially like the above function.</p>
+<p><b>Note:</b> This variant of the fetch-and-add integer function implies that the atomic fetch-and-add operation must be performed before memory operations after the fetch-and-add.</p>
+<a name="11"></a><a name="int-q-atomic-fetch-and-add-release-int-volatile-int-ptr-int-value"></a>
+<h4>int q_atomic_fetch_and_add_release_int (volatile int *ptr, int value)</h4>
+<p>This function behaves essentially like the above function.</p>
+<p><b>Note:</b> This variant of the fetch-and-add integer function implies that all memory operations must be performed before the fetch-and-add.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

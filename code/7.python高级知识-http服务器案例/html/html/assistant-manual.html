@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- /fasttmp/mkdist-qt-4.3.5-1211793125/qtopia-core-opensource-src-4.3.5/doc/src/assistant-manual.qdoc -->
+<head>
+  <title>Qt 4.3: Qt Assistant Manual</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">Qt Assistant Manual<br /><small></small></h1>
+<a name="qt-assistant"></a><a name="introduction"></a>
+<h2>Introduction</h2>
+<p>This document introduces <i>Qt Assistant</i>, a tool for presenting on-line documentation. It also introduces the Qt Reference Documentation which is accessible using <i>Qt Assistant</i>, or with a web browser. The document is divided into the following sections:</p>
+<ul><li><a href="#introduction">Introduction</a></li>
+<li><a href="#introduction-to-the-qt-reference-documentation">Introduction to the Qt Reference Documentation</a></li>
+<li><a href="#the-one-minute-guide-to-using-qt-assistant">The One-Minute Guide to Using Qt Assistant</a></li>
+<li><a href="#qt-assistant-in-more-detail">Qt Assistant in More Detail</a></li>
+<ul><li><a href="#the-sidebar">The Sidebar</a></li>
+<li><a href="#the-documentation-window">The Documentation Window</a></li>
+<li><a href="#the-toolbar">The Toolbar</a></li>
+<li><a href="#the-menus">The Menus</a></li>
+<ul><li><a href="#the-file-menu">The File Menu</a></li>
+<li><a href="#the-edit-menu">The Edit Menu</a></li>
+<li><a href="#the-view-menu">The View Menu</a></li>
+<li><a href="#the-go-menu">The Go Menu</a></li>
+<li><a href="#the-bookmarks-menu">The Bookmarks Menu</a></li>
+</ul>
+<li><a href="#the-dialogs">The Dialogs</a></li>
+<ul><li><a href="#the-print-dialog">The Print Dialog</a></li>
+<li><a href="#the-find-text-dialog">The Find Text Dialog</a></li>
+</ul>
+</ul>
+<li><a href="#full-text-searching">Full Text Searching</a></li>
+<li><a href="#customizing-qt-assistant">Customizing Qt Assistant</a></li>
+<ul><li><a href="#modifying-the-default-documentation-set">Modifying the Default Documentation Set</a></li>
+<ul><li><a href="#documentation-content-file-format">Documentation Content File Format</a></li>
+</ul>
+<li><a href="#profiles">Profiles</a></li>
+<ul><li><a href="#using-profiles">Using Profiles</a></li>
+</ul>
+</ul>
+</ul>
+<a name="introduction-to-the-qt-reference-documentation"></a>
+<h2>Introduction to the Qt Reference Documentation</h2>
+<p>The documentation for the Qt library is written in-line in the <tt>.cpp</tt> files by the developers themselves. The documentation team revises the documentation to ensure that it is accurate and usable, and to provide quality control. The documentation team also writes the larger texts, such as the class descriptions that introduce a class along with the concepts the class uses, as well as introducing the functions and properties that the class provides.</p>
+<p>The documentation focuses on the API rather than the internals, since we make great efforts to keep our API consistent and compatible with each new version, but we may change the internals considerably to improve performance and enhance functionality.</p>
+<p>The Qt Reference Documentation consists of almost 1,500 HTML pages (over 2,500 printed pages). The overwhelming majority of pages document Qt classes. Since developers differ in the way they think and work we provide a variety of approaches to navigating the documentation set:</p>
+<ul>
+<li>The <a href="classes.html">Qt's Classes</a> page lists every class in Qt's public API, and consists of several hundred classes.</li>
+<li>The <a href="mainclasses.html">Qt's Main Classes</a> page lists the classes you're most likely to use most often, and provides a much shorter and more managable list than the All Classes list.</li>
+<li>The <a href="groups.html">Grouped Classes</a> page presents a list of groups, each of which leads to a list of related classes, for example, the <a href="advanced.html">Advanced Widgets</a> list.</li>
+<li>The <a href="hierarchy.html">Class Inheritance Hierarchy</a> page presents a list of classes in terms of the hierarchy of Qt classes.</li>
+<li>The <a href="functions.html">Member Function Index</a> page lists all the functions provided by Qt classes, each one with links to the class(es) in which it appears.</li>
+</ul>
+<p>No matter where you find yourself in the Qt documentation, you will find extensive cross-referencing. Even snippets of example code contain clickable links, so that for example, if you come across a class declaration in a code example, the class name will be a clickable link to the class's documentation.</p>
+<p>In addition to the class documentation some of Qt's modules have extensive descriptions, and there are many overview documents which describe various aspects of the Qt library; all these are linked from the reference documentation home page. There are also two tutorials and numerous example programs in the examples subdirectory of the Qt distribution.</p>
+<a name="the-one-minute-guide-to-using-qt-assistant"></a>
+<h2>The One-Minute Guide to Using Qt Assistant</h2>
+<p>Under Windows, <i>Qt Assistant</i> is available as a menu option on the Qt menu. On Unix, run <tt>assistant</tt> from an xterm.</p>
+<p>When you start up <i>Qt Assistant</i>, you will be presented with a standard main-window style application, with a menu bar and toolbar. Below these, on the left hand side is a navigation window called the <i>Sidebar</i>, and on the right, taking up most of the space, is the documentation window. By default, the Qt Reference Documentation's home page is shown in the documentation window.</p>
+<p><i>Qt Assistant</i> works in a similar way to a web browser. If you click underlined text (which signifies a cross-reference), the documentation window will present the relevant page. You can bookmark pages of particular interest and you can click the <b>Previous</b> and <b>Next</b> toolbar buttons to navigate within the pages you've visited.</p>
+<p>Although <i>Qt Assistant</i> can be used just like a web browser to navigate through the Qt documentation set, <i>Qt Assistant</i> offers a powerful means of navigation that web browsers don't provide. <i>Qt Assistant</i> uses an intelligent algorithm to index all the pages in the documentation sets that it presents so that you can search for particular words and phrases.</p>
+<p>To perform an index search, click the <b>Index</b> tab on the Sidebar (or click <b>Ctrl+I</b>). In the 'Look For' line edit enter a word, e.g&#x2e; 'homedirpath'. As you type, words are found and highlighted in a list beneath the line edit. If the highlighted text matches what you're looking for, double click it, (or press <b>Enter</b>) and the documentation window will display the relevant page. You rarely have to type in the whole word before <i>Qt Assistant</i> finds a match. Note that for some words there may be more than one possible page that is relevant.</p>
+<p><i>Qt Assistant</i> also provides full text searching for finding specific words in the documentation. Documents with the highest occurrences of the word that you are looking for appear first, and every occurrence of the word within the documentation is highlighted.</p>
+<p><i>Qt Assistant</i> can be customized by creating profiles, a collection of documentation. Profiles can be created for your own use, or for an application you will distribute. With profiles, you can select which documentation you want the end user of your application to be able to view.</p>
+<a name="qt-assistant-in-more-detail"></a>
+<h2>Qt Assistant in More Detail</h2>
+<p align="center"><img src="images/assistant-assistant.png" /></p><a name="the-sidebar"></a>
+<h3>The Sidebar</h3>
+<p align="center"><img src="images/assistant-sidebar.png" /></p><p>The sidebar provides four ways of navigating documentation:</p>
+<ol type="1">
+<li>The <b>Contents</b> tab presents a tree view of the documentation sets that are available. If you click an item, its documentation will appear in the documentation window. If you double click an item or click a '+' sign to the left of an item, the item's sub-items will appear. Click a sub-item to make its page appear in the documentation window. Click a '-' sign to the left of an item to hide its sub-items.</li>
+<li>The <b>Index</b> tab is used to look up key words or phrases. See <a href="#the-one-minute-guide-to-using-qt-assistant">The One-Minute Guide to Using Qt Assistant</a> for how to use this tab.</li>
+<li>The <b>Bookmarks</b> tab lists any bookmarks you've made. Double click a bookmark to make its page appear in the documentation window. The <b>Bookmarks</b> tab has a <b>New Bookmark</b> button and a <b>Delete Bookmark</b> button at the bottom. Click <b>New Bookmark</b> to bookmark the page that is showing in the documentation window. Click a bookmark in the list, then click <b>Delete Bookmark</b> to delete the highlighted bookmark.</li>
+<li>The <b>Search</b> tab provides full text search of <i>all</i> the documents. See <a href="#full-text-searching">Full Text Searching</a> for more information about this feature.</li>
+</ol>
+<p>If you want the documentation window to use as much space as possible, you can easily hide or show the Sidebar. If the Sidebar is showing, press <b>Ctrl+T</b>, <b>Ctrl+I</b>, <b>Ctrl+B</b>, or <b>Ctrl+S</b> to hide it. If the Sidebar is hidden, press <b>Ctrl+T</b> to show it on the Contents tab, or press <b>Ctrl+I</b> to show it on the Index tab (with the focus in the 'Look For' line edit box), or press <b>Ctrl+B</b> to show it on the Bookmarks tab, or press <b>Ctrl+S</b> to show it on the (full text) <b>Search</b> tab.</p>
+<p>The Sidebar is a dock window, so you can drag it to the top, left, right or bottom of <i>Qt Assistant</i>'s window, or you can drag it outside <i>Qt Assistant</i> to float it.</p>
+<a name="the-documentation-window"></a>
+<h3>The Documentation Window</h3>
+<p align="center"><img src="images/assistant-docwindow.png" /></p><p>The documentation window offers a feature for viewing documentation by enabling you to create tabs for each documentation page that you view. Click the <b>Add Tab</b> button and a new tab will appear with the page name as the tab's caption. This makes it convenient to switch between pages when you are working with different documentation. You can delete a tab by clicking the <b>Close Tab</b> button located on the right side of the documentation window.</p>
+<a name="the-toolbar"></a>
+<h3>The Toolbar</h3>
+<p align="center"><img src="images/assistant-toolbar1.png" /></p><p>The toolbar provides fast access to the most common actions.</p>
+<ul>
+<li><b>Previous</b> takes you to the previous page. The menu option is <b>Go|Previous</b> and the keyboard shortcut is <b>Alt+Left Arrow</b>.</li>
+<li><b>Next</b> takes you to the next page. The menu option is <b>Go</b>|Next and the keyboard shortcut is <b>Alt+Right Arrow</b>.</li>
+<li><b>Home</b> takes you to the home page (normally the home page of the Qt Reference Documentation). The menu option is <b>Go</b>|Home and the keyboard shortcut is <b>Ctrl+Home</b>.</li>
+<li><b>Copy</b> copies any selected text to the clipboard. The menu option is <b>Edit</b>|Copy and the keyboard shortcut is <b>Ctrl+C</b>.</li>
+<li><b>Find in Text</b> invokes the <b>Find Text</b> dialog. The menu option is <b>Edit|Find in Text</b> and the keyboard shortcut is <b>Ctrl+F</b>.</li>
+<li><b>Print</b> invokes the <b>Print</b> dialog. The menu option is <b>File|Print</b> and the keyboard shortcut is <b>Ctrl+P</b>.</li>
+<li><b>Zoom in</b> increases the font size. The menu option is <b>View|Zoom in</b> and the keyboard shortcut is <b>Ctrl++</b>.</li>
+<li><b>Zoom out</b> decreases the font size. The menu option is <b>View|Zoom out</b> and the keyboard shortcut is <b>Ctrl+-</b>.</li>
+<li><b>What's This?</b> provides a description of a <i>Qt Assistant</i> feature. The menu option is <b>Help|What's This?</b> and the keyboard shortcut is <b>Shift+F1</b>.</li>
+</ul>
+<p>The remaining toolbar buttons are bookmarks and will vary depending on your configuration.</p>
+<a name="the-menus"></a>
+<h3>The Menus</h3>
+<a name="the-file-menu"></a>
+<h4>The File Menu</h4>
+<ul>
+<li><b>File|Print</b> invokes the <b>Print</b> dialog.</li>
+<li><b>File|Exit</b> terminates <i>Qt Assistant</i>.</li>
+</ul>
+<a name="the-edit-menu"></a>
+<h4>The Edit Menu</h4>
+<ul>
+<li><b>Edit|Copy</b> copies any selected text to the clipboard.</li>
+<li><b>Edit|Find in Text</b> invokes the <b>Find Text</b> dialog.</li>
+</ul>
+<a name="the-view-menu"></a>
+<h4>The View Menu</h4>
+<ul>
+<li><b>View|Zoom in</b> increases the font size.</li>
+<li><b>View|Zoom out</b> decreases the font size.</li>
+<li><b>View|Views|Sidebar</b> toggles the display of the Sidebar.</li>
+<li><b>View|Views|Toolbar</b> toggles the display of the Toolbar.</li>
+<li><b>View|Views|Line up</b> lines up the toolbar buttons in the Toolbar.</li>
+</ul>
+<a name="the-go-menu"></a>
+<h4>The Go Menu</h4>
+<ul>
+<li><b>Go|Previous</b> displays the previous page.</li>
+<li><b>Go|Next</b> displays the next page.</li>
+<li><b>Go|home</b> goes to the home page.</li>
+</ul>
+<p>This menu also has additional items; these are pre-defined bookmarks that vary depending on your configuration.</p>
+<a name="the-bookmarks-menu"></a>
+<h4>The Bookmarks Menu</h4>
+<ul>
+<li><b>Bookmarks|Add</b> adds the current page to the list of bookmarks.</li>
+</ul>
+<p>This menu may have additional items, i.e&#x2e; any bookmarks that you have already made. If you want to delete a bookmark go to the Bookmarks tab on the Sidebar.</p>
+<a name="the-dialogs"></a>
+<h3>The Dialogs</h3>
+<a name="the-print-dialog"></a>
+<h4>The Print Dialog</h4>
+<p>This dialog is platform-specific. It gives access to various printer options and can be used to print the current page.</p>
+<a name="the-find-text-dialog"></a>
+<h4>The Find Text Dialog</h4>
+<p>This dialog is used to find text in the current page. Enter the text you want to find in the Find line edit. If you check the 'Whole words only' checkbox, the search will only consider whole words, i.e&#x2e; if you search for 'spin' with this checkbox checked it will not match 'spinbox', but will match 'spin'. If you check the 'Case sensitive' check box then, for example, 'spin' will match 'spin' but not 'Spin'. You can search Forward or Backward from your current position in the page by clicking one of the Direction radio buttons. Click the <b>Find</b> button to search (or search again), and click the <b>Close</b> button to finish.</p>
+<a name="full-text-searching"></a>
+<h2>Full Text Searching</h2>
+<p align="center"><img src="images/assistant-search.png" /></p><p><i>Qt Assistant</i> provides a powerful full text search engine. To search for certain words or text, click the 'Search' tab in the sidebar. Then enter the text you want to look for and press <b>Enter</b> or click <b>Search</b>. The search is not case sensitive, so Foo, fOo and FOO are all treated as the same. The following are examples of common search patterns:</p>
+<ul>
+<li><tt>deep</tt> -- lists all the documents that contain the word 'deep'</li>
+<li><tt>deep*</tt> -- lists all the documents that contain a word beginning with 'deep'</li>
+<li><tt>deep copy</tt> -- lists all documents that contain both 'deep' <i>and</i> 'copy'</li>
+<li><tt>&quot;deep copy&quot;</tt> -- list all documents that contain the phrase 'deep copy'</li>
+</ul>
+<p>The wildcard (*) character cannot be used within quotes.</p>
+<p>The list of documents found is ordered according to the number of occurrences of the search text they contain, therefore those with the highest number of occurrences appearing first. Simply click any document in the list to display it in the document window.</p>
+<p>If the documentation has changed, i.e&#x2e; if documents have been added or removed, <i>Qt Assistant</i> will reindex.</p>
+<a name="customizing-qt-assistant"></a>
+<h2>Customizing Qt Assistant</h2>
+<p><i>Qt Assistant</i> can be customized by adding and removing documentation from its documentation set. In addition, <i>Qt Assistant</i> introduces the profiles option, which enables its properties to change, for example, the default startup page, and application icon.</p>
+<a name="modifying-the-default-documentation-set"></a>
+<h3>Modifying the Default Documentation Set</h3>
+<p>When it is started without any options, <i>Qt Assistant</i> displays a default set of documentation. When Qt is installed, the default documentation set in <i>Qt Assistant</i> contains the Qt reference documentation as well as the tools that come with Qt, such as <i>Qt Designer</i> and qmake.</p>
+<p>Documentation can be added or removed from <i>Qt Assistant</i> by adding and removing the content files. The format of the content files are specified below. To add a content file, type the following command line option: <tt>-addContentFile docfile</tt>. To remove a content file from the default set, type the following command line option: <tt>-removeContentFile docfile</tt>. For example:</p>
+<pre> 1: &gt; assistant -addContentFile file.dcf
+ 2: &gt; assistant
+ 3: &gt; assistant -removeContentFile file.dcf</pre>
+<p>In line one, we add the content file <tt>file.dcf</tt>. In line two, we start <i>Qt Assistant</i>. The default set will now be extended with the doc file <tt>file.dcf</tt>. In line three we remove the file <tt>file.dcf</tt> from the default documentation set so that subsequent use of <i>Qt Assistant</i> will not contain this file.</p>
+<a name="documentation-content-file-format"></a>
+<h4>Documentation Content File Format</h4>
+<p>The Documentation Content File must contain the documentation's table of contents and all important keywords for the index. In addition, it may inherit an icon for the documentation which is displayed in the <i>Qt Assistant</i> toolbar. You can also specify an extra directory path for additional images used in the documentation.</p>
+<p>An example of a content file that uses all the available tags and attributes is shown below:</p>
+<pre> &lt;assistantconfig version=&quot;3.2.0&quot;&gt;
+     &lt;DCF ref=&quot;demo.html&quot; icon=&quot;handbook.png&quot; imagedir=&quot;../img/&quot;
+             title=&quot;Development Demo Handbook&quot;&gt;
+         &lt;section ref=&quot;./chap1/chap1.html&quot; title=&quot;Chapter1&quot;&gt;
+             &lt;section ref=&quot;./chap1/section1.html&quot; title=&quot;Section1&quot;&gt;
+                 &lt;keyword ref=&quot;./chap1/section1.html#foo&quot;&gt;foo&lt;/keyword&gt;
+                 &lt;keyword ref=&quot;./chap1/section1.html#bla&quot;&gt;bla&lt;/keyword&gt;
+                 &lt;section ref=&quot;./chap1/section1.html#subsection1&quot; title=&quot;Subsection 1&quot;/&gt;
+                 &lt;section ref=&quot;./chap1/section1.html#subsection2&quot; title=&quot;Subsection 2&quot;/&gt;
+                 &lt;section ref=&quot;./chap1/section1.html#subsection3&quot; title=&quot;Subsection 3&quot;/&gt;
+             &lt;/section&gt;
+             &lt;section ref=&quot;./chap1/section2&quot; title=&quot;Section2&quot;&gt;
+                 &lt;section ref=&quot;./chap1/section2.html#subsection1&quot; title=&quot;Subsection 1&quot;/&gt;
+                 &lt;section ref=&quot;./chap1/section2.html#subsection2&quot; title=&quot;Subsection 2&quot;/&gt;
+                 &lt;section ref=&quot;./chap1/section2.html#subsection3&quot; title=&quot;Subsection 3&quot;/&gt;
+             &lt;/section&gt;
+         &lt;/section&gt;
+         &lt;section ref=&quot;./chap2/chap2.html&quot; title=&quot;Chapter2&quot;&gt;
+             &lt;keyword ref=&quot;./chap2/chap2.html#foo&quot;&gt;foo&lt;/keyword&gt;
+             &lt;section ref=&quot;./chap2/section1.html&quot; title=&quot;Section1&quot;/&gt;
+         &lt;/section&gt;
+     &lt;/DCF&gt;
+ &lt;/assistantconfig&gt;</pre>
+<p>Sections may be nested as deeply as necessary. All references should be related.</p>
+<p>Note that any <tt>keyword</tt> tags for a given section must appear <i>before</i> any sections nested within the given section.</p>
+<p>The paths in the <tt>refs</tt> attribute are always written Unix-style (forward slashes) and are relative to the location of the documentation content file itself.</p>
+<p>Since the introduction of the new root tag <tt>assistantconfig</tt> in the fileformat from Qt version 3.2&#x2e;0, it is possible to specify multiple DCF tags in one file. Note that the old document contents file format, used up to Qt 3.2 is still valid.</p>
+<a name="profiles"></a>
+<h3>Profiles</h3>
+<p>Profiles enable <i>Qt Assistant</i> to act as a specialized help tool for displaying documentation for applications. With profiles, the documentation writer can change properties such as <i>Qt Assistant</i>'s title, application icons, and 'about' dialogs. In addition, profiles can be used to run specialized documentation sets that are separate from the Qt docs. <i>Qt Assistant</i> can be customized by changing the following properties:</p>
+<ul>
+<li>Name - This property is used to name the profile. If multiple profiles are used for the same installation of <i>Qt Assistant</i>, this parameter is crucial to keep their profile specific settings apart. The property name is <tt>name</tt></li>
+<li>Title - This property is used to specify a window title for <i>Qt Assistant</i>. The property name is <tt>title</tt></li>
+<li>Application Icon - This property describes an icon that will be used as <i>Qt Assistant</i> application icon. The location of the icon is relative to the location of the profile. The property name is <tt>applicationicon</tt></li>
+<li>Start Page - This property specifies which page <i>Qt Assistant</i> should initially display when the profile is used. Usually, this is the HTML file which contains the documentation's table of contents. This property also describes the default location to go to when pressing the home button in <i>Qt Assistant</i>'s main user interface. The start page is specified relative to the location of the profile. The property name is <tt>startpage</tt></li>
+<li>About Menu Text - This property describes the text that appears in the <b>Help</b> menu, e.g&#x2e; About Application. The property name is <tt>aboutmenutext</tt></li>
+<li>About URL - This property can be used to point to an HTML file that describes the contents in the About dialog that is opened for the <b>Help</b> menu, e.g&#x2e; About Application. The url is specified relative to the location of the profile. The property name is <tt>abouturl</tt></li>
+<li><i>Qt Assistant</i> Documentation - This property describes the location of the <i>Qt Assistant</i> documentation, which is used when the user requests help from the <b>Search</b> tab. The location is a directory relative to the location of the profile. The property name is <tt>assistantdocs</tt>.</li>
+</ul>
+<p>To define a profile, one needs to specify a <i>Qt Assistant</i> Document Profile, usually abbreviated <tt>.adp</tt>. The profile is an extension of the Documentation Content File described above. We add a <tt>profile</tt> tag containing <tt>property</tt> tags to the format.</p>
+<p>An example of a document profile file is shown below:</p>
+<p><tt>simpletextviewer.adp</tt></p>
+<a name="using-profiles"></a>
+<h4>Using Profiles</h4>
+<p>To use a profile, run <i>Qt Assistant</i> with the option <tt>-profile filename</tt>. This will load the profile specified in the file and will customize <i>Qt Assistant</i> accordingly. For example, to run <i>Qt Assistant</i> with the example file above, <tt>simpletextviewer.adp</tt>, we would run the command as follows:</p>
+<pre> &gt; assistant -profile simpletextviewer.adp</pre>
+<p>See the <a href="assistant-simpletextviewer.html">Simple Text Viewer</a> example in the Qt distribution for a demonstration on how to use <i>Qt Assistant</i> with profiles for your own applications.</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- /fasttmp/mkdist-qt-4.3.5-1211793125/qtopia-core-opensource-src-4.3.5/src/gui/embedded/qkbd_qws.cpp -->
+<head>
+  <title>Qt 4.3: QWSKeyboardHandler Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">QWSKeyboardHandler Class Reference<br /><sup><sup>[<a href="qtgui.html">QtGui</a> module]</sup></sup></h1>
+<p>The QWSKeyboardHandler class is a base class for keyboard drivers in Qtopia Core. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSKeyboardHandler&gt;</pre><ul>
+<li><a href="qwskeyboardhandler-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h3>Public Functions</h3>
+<ul>
+<li><div class="fn"/><b><a href="qwskeyboardhandler.html#QWSKeyboardHandler">QWSKeyboardHandler</a></b> ()</li>
+<li><div class="fn"/>virtual <b><a href="qwskeyboardhandler.html#dtor.QWSKeyboardHandler">~QWSKeyboardHandler</a></b> ()</li>
+<li><div class="fn"/>virtual void <b><a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a></b> ( int <i>unicode</i>, int <i>keycode</i>, Qt::KeyboardModifiers <i>modifiers</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )</li>
+</ul>
+<a name="protected-functions"></a>
+<h3>Protected Functions</h3>
+<ul>
+<li><div class="fn"/>void <b><a href="qwskeyboardhandler.html#beginAutoRepeat">beginAutoRepeat</a></b> ( int <i>unicode</i>, int <i>keycode</i>, Qt::KeyboardModifiers <i>modifier</i> )</li>
+<li><div class="fn"/>void <b><a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a></b> ()</li>
+<li><div class="fn"/>int <b><a href="qwskeyboardhandler.html#transformDirKey">transformDirKey</a></b> ( int <i>keycode</i> )</li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSKeyboardHandler class is a base class for keyboard drivers in Qtopia Core.</p>
+<p>Note that this class is only available in <a href="qtopiacore.html">Qtopia Core</a>.</p>
+<p><a href="qtopiacore.html">Qtopia Core</a> provides ready-made drivers for several keyboard protocols, see the <a href="qtopiacore-charinput.html">character input</a> documentation for details. Custom keyboard drivers can be implemented by subclassing the QWSKeyboardHandler class and creating a keyboard driver plugin (derived from <a href="qkbddriverplugin.html">QKbdDriverPlugin</a>). <a href="qtopiacore.html">Qtopia Core</a>'s implementation of the <a href="qkbddriverfactory.html">QKbdDriverFactory</a> class will automatically detect the plugin, and load the driver into the server application at runtime using Qt's <a href="plugins-howto.html">plugin system</a>.</p>
+<p>The keyboard driver receives keyboard events from the system device and encapsulates each event with an instance of the <a href="qwsevent.html">QWSEvent</a> class which it then passes to the server application (the server is responsible for propagating the event to the appropriate client). To receive keyboard events, a QWSKeyboardHandler object will usually create a <a href="qsocketnotifier.html">QSocketNotifier</a> object for the given device. The <a href="qsocketnotifier.html">QSocketNotifier</a> class provides support for monitoring activity on a file descriptor. When the socket notifier receives data, it will call the keyboard driver's <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>() function to send the event to the <a href="qtopiacore.html">Qtopia Core</a> server application for relaying to clients.</p>
+<p>QWSKeyboardHandler also provides functions to control auto-repetion of key sequences, <a href="qwskeyboardhandler.html#beginAutoRepeat">beginAutoRepeat</a>() and <a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a>(), and the <a href="qwskeyboardhandler.html#transformDirKey">transformDirKey</a>() function enabling transformation of arrow keys according to the display orientation.</p>
+<p>See also <a href="qkbddriverplugin.html">QKbdDriverPlugin</a>, <a href="qkbddriverfactory.html">QKbdDriverFactory</a>, and <a href="qtopiacore-charinput.html">Qtopia Core Character Input</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="QWSKeyboardHandler"></a>QWSKeyboardHandler::QWSKeyboardHandler ()</h3>
+<p>Constructs a keyboard driver.</p>
+<p>Call the <a href="qwsserver.html#setKeyboardHandler">QWSServer::setKeyboardHandler</a>() function to make the newly created keyboard driver, the primary driver. Note that the primary driver is controlled by the system, i.e&#x2e;, the system will delete it upon exit.</p>
+<h3 class="fn"><a name="dtor.QWSKeyboardHandler"></a>QWSKeyboardHandler::~QWSKeyboardHandler ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys this keyboard driver.</p>
+<p>Do not call this function if this driver is the primary keyboard handler, i.e&#x2e;, if <a href="qwsserver.html#setKeyboardHandler">QWSServer::setKeyboardHandler</a>() function has been called passing this driver as argument. The primary keyboard driver is deleted by the system.</p>
+<h3 class="fn"><a name="beginAutoRepeat"></a>void QWSKeyboardHandler::beginAutoRepeat ( int <i>unicode</i>, int <i>keycode</i>, <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <i>modifier</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Begins auto-repeating the specified key press; after a short delay the key press is sent periodically until the <a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a>() function is called.</p>
+<p>The key press is specified by its <i>unicode</i>, <i>keycode</i> and <i>modifier</i> state.</p>
+<p>See also <a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a>() and <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>().</p>
+<h3 class="fn"><a name="endAutoRepeat"></a>void QWSKeyboardHandler::endAutoRepeat ()&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Stops auto-repeating a key press.</p>
+<p>See also <a href="qwskeyboardhandler.html#beginAutoRepeat">beginAutoRepeat</a>() and <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>().</p>
+<h3 class="fn"><a name="processKeyEvent"></a>void QWSKeyboardHandler::processKeyEvent ( int <i>unicode</i>, int <i>keycode</i>, <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifiers</a> <i>modifiers</i>, bool <i>isPress</i>, bool <i>autoRepeat</i> )&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Sends a key event to the <a href="qtopiacore.html">Qtopia Core</a> server application.</p>
+<p>The key event is identified by its <i>unicode</i> value and the <i>keycode</i>, <i>modifiers</i>, <i>isPress</i> and <i>autoRepeat</i> parameters.</p>
+<p>The <i>keycode</i> parameter is the Qt keycode value as defined by the <a href="qt.html#Key-enum">Qt::Key</a> enum. The <i>modifiers</i> is an OR combination of <a href="qt.html#KeyboardModifier-enum">Qt::KeyboardModifier</a> values, indicating whether <b>Shift/Alt/Ctrl</b> keys are pressed. The <i>isPress</i> parameter is true if the event is a key press event and <i>autoRepeat</i> is true if the event is caused by an auto-repeat mechanism and not an actual key press.</p>
+<p>See also <a href="qwskeyboardhandler.html#beginAutoRepeat">beginAutoRepeat</a>(), <a href="qwskeyboardhandler.html#endAutoRepeat">endAutoRepeat</a>(), and <a href="qwskeyboardhandler.html#transformDirKey">transformDirKey</a>().</p>
+<h3 class="fn"><a name="transformDirKey"></a>int QWSKeyboardHandler::transformDirKey ( int <i>keycode</i> )&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Transforms the arrow key specified by the given <i>keycode</i>, to the orientation of the display and returns the transformed keycode.</p>
+<p>The <i>keycode</i> is a <a href="qt.html#Key-enum">Qt::Key</a> value. The values identifying arrow keys are:</p>
+<ul>
+<li><a href="qt.html#Key-enum">Qt::Key_Left</a></li>
+<li><a href="qt.html#Key-enum">Qt::Key_Up</a></li>
+<li><a href="qt.html#Key-enum">Qt::Key_Right</a></li>
+<li><a href="qt.html#Key-enum">Qt::Key_Down</a></li>
+</ul>
+<p>See also <a href="qwskeyboardhandler.html#processKeyEvent">processKeyEvent</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

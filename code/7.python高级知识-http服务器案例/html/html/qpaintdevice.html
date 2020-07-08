@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- /fasttmp/mkdist-qt-4.3.5-1211793125/qtopia-core-opensource-src-4.3.5/src/gui/painting/qpaintdevice_x11.cpp -->
+<head>
+  <title>Qt 4.3: QPaintDevice Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">QPaintDevice Class Reference<br /><sup><sup>[<a href="qtgui.html">QtGui</a> module]</sup></sup></h1>
+<p>The QPaintDevice class is the base class of objects that can be painted. <a href="#details">More...</a></p>
+<pre> #include &lt;QPaintDevice&gt;</pre><p>Inherited by <a href="qcustomrasterpaintdevice.html">QCustomRasterPaintDevice</a>, <a href="qglframebufferobject.html">QGLFramebufferObject</a>, <a href="qglpixelbuffer.html">QGLPixelBuffer</a>, <a href="qimage.html">QImage</a>, <a href="qpicture.html">QPicture</a>, <a href="qpixmap.html">QPixmap</a>, <a href="qprinter.html">QPrinter</a>, <a href="qsvggenerator.html">QSvgGenerator</a>, and <a href="qwidget.html">QWidget</a>.</p>
+<ul>
+<li><a href="qpaintdevice-members.html">List of all members, including inherited members</a></li>
+<li><a href="qpaintdevice-qt3.html">Qt 3 support members</a></li>
+</ul>
+<a name="public-types"></a>
+<h3>Public Types</h3>
+<ul>
+<li><div class="fn"/>enum <b><a href="qpaintdevice.html#PaintDeviceMetric-enum">PaintDeviceMetric</a></b> { PdmWidth, PdmHeight, PdmWidthMM, PdmHeightMM, ..., PdmPhysicalDpiY }</li>
+</ul>
+<a name="public-functions"></a>
+<h3>Public Functions</h3>
+<ul>
+<li><div class="fn"/>virtual <b><a href="qpaintdevice.html#dtor.QPaintDevice">~QPaintDevice</a></b> ()</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#depth">depth</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#height">height</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#heightMM">heightMM</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#logicalDpiX">logicalDpiX</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#logicalDpiY">logicalDpiY</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#numColors">numColors</a></b> () const</li>
+<li><div class="fn"/>virtual QPaintEngine * <b><a href="qpaintdevice.html#paintEngine">paintEngine</a></b> () const = 0</li>
+<li><div class="fn"/>bool <b><a href="qpaintdevice.html#paintingActive">paintingActive</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#physicalDpiX">physicalDpiX</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#physicalDpiY">physicalDpiY</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#width">width</a></b> () const</li>
+<li><div class="fn"/>int <b><a href="qpaintdevice.html#widthMM">widthMM</a></b> () const</li>
+</ul>
+<a name="protected-functions"></a>
+<h3>Protected Functions</h3>
+<ul>
+<li><div class="fn"/><b><a href="qpaintdevice.html#QPaintDevice">QPaintDevice</a></b> ()</li>
+<li><div class="fn"/>virtual int <b><a href="qpaintdevice.html#metric">metric</a></b> ( PaintDeviceMetric <i>metric</i> ) const</li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QPaintDevice class is the base class of objects that can be painted.</p>
+<p>A paint device is an abstraction of a two-dimensional space that can be drawn using a <a href="qpainter.html">QPainter</a>. Its default coordinate system has its origin located at the top-left position. X increases to the right and Y increases downwards. The unit is one pixel.</p>
+<p>The drawing capabilities of QPaintDevice are currently implemented by the <a href="qwidget.html">QWidget</a>, <a href="qimage.html">QImage</a>, <a href="qpixmap.html">QPixmap</a>, <a href="qglpixelbuffer.html">QGLPixelBuffer</a>, <a href="qpicture.html">QPicture</a>, and <a href="qprinter.html">QPrinter</a> subclasses.</p>
+<p>To implement support for a new backend, you must derive from QPaintDevice and reimplement the virtual <a href="qpaintdevice.html#paintEngine">paintEngine</a>() function to tell <a href="qpainter.html">QPainter</a> which paint engine should be used to draw on this particular device. Note that you also must create a corresponding paint engine to be able to draw on the device, i.e derive from <a href="qpaintengine.html">QPaintEngine</a> and reimplement its virtual functions.</p>
+<p><b>Warning:</b> Qt requires that a <a href="qapplication.html">QApplication</a> object exists before any paint devices can be created. Paint devices access window system resources, and these resources are not initialized before an application object is created.</p>
+<p>The QPaintDevice class provides several functions returning the various device metrics: The <a href="qpaintdevice.html#depth">depth</a>() function returns its bit depth (number of bit planes). The <a href="qpaintdevice.html#height">height</a>() function returns its height in default coordinate system units (e.g&#x2e; pixels for <a href="qpixmap.html">QPixmap</a> and <a href="qwidget.html">QWidget</a>) while <a href="qpaintdevice.html#heightMM">heightMM</a>() returns the height of the device in millimeters. Similiarily, the <a href="qpaintdevice.html#width">width</a>() and <a href="qpaintdevice.html#widthMM">widthMM</a>() functions return the width of the device in default coordinate system units and in millimeters, respectively. Alternatively, the protected <a href="qpaintdevice.html#metric">metric</a>() function can be used to retrieve the metric information by specifying the desired <a href="qpaintdevice.html#PaintDeviceMetric-enum">PaintDeviceMetric</a> as argument.</p>
+<p>The <a href="qpaintdevice.html#logicalDpiX">logicalDpiX</a>() and <a href="qpaintdevice.html#logicalDpiY">logicalDpiY</a>() functions return the horizontal and vertical resolution of the device in dots per inch. The <a href="qpaintdevice.html#physicalDpiX">physicalDpiX</a>() and <a href="qpaintdevice.html#physicalDpiY">physicalDpiY</a>() functions also return the resolution of the device in dots per inch, but note that if the logical and vertical resolution differ, the corresponding <a href="qpaintengine.html">QPaintEngine</a> must handle the mapping. Finally, the <a href="qpaintdevice.html#numColors">numColors</a>() function returns the number of different colors available for the paint device.</p>
+<p>See also <a href="qpaintengine.html">QPaintEngine</a>, <a href="qpainter.html">QPainter</a>, <a href="coordsys.html">The Coordinate System</a>, and <a href="paintsystem.html">The Paint System</a>.</p>
+<hr />
+<h2>Member Type Documentation</h2>
+<h3 class="fn"><a name="PaintDeviceMetric-enum"></a>enum QPaintDevice::PaintDeviceMetric</h3>
+<p>Describes the various metrics of a paint device.</p>
+<p><table border="1" cellpadding="2" cellspacing="1" width="100%">
+<tr><th width="25%">Constant</th><th width="15%">Value</th><th width="60%">Description</th></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmWidth</tt></td><td align="center" valign="top"><tt>1</tt></td><td valign="top">The width of the paint device in default coordinate system units (e.g&#x2e; pixels for <a href="qpixmap.html">QPixmap</a> and <a href="qwidget.html">QWidget</a>). See also <a href="qpaintdevice.html#width">width</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmHeight</tt></td><td align="center" valign="top"><tt>2</tt></td><td valign="top">The height of the paint device in default coordinate system units (e.g&#x2e; pixels for <a href="qpixmap.html">QPixmap</a> and <a href="qwidget.html">QWidget</a>). See also <a href="qpaintdevice.html#height">height</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmWidthMM</tt></td><td align="center" valign="top"><tt>3</tt></td><td valign="top">The width of the paint device in millimeters. See also <a href="qpaintdevice.html#widthMM">widthMM</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmHeightMM</tt></td><td align="center" valign="top"><tt>4</tt></td><td valign="top">The height of the paint device in millimeters. See also <a href="qpaintdevice.html#heightMM">heightMM</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmNumColors</tt></td><td align="center" valign="top"><tt>5</tt></td><td valign="top">The number of different colors available for the paint device. See also <a href="qpaintdevice.html#numColors">numColors</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmDepth</tt></td><td align="center" valign="top"><tt>6</tt></td><td valign="top">The bit depth (number of bit planes) of the paint device. See also <a href="qpaintdevice.html#depth">depth</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmDpiX</tt></td><td align="center" valign="top"><tt>7</tt></td><td valign="top">The horizontal resolution of the device in dots per inch. See also <a href="qpaintdevice.html#logicalDpiX">logicalDpiX</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmDpiY</tt></td><td align="center" valign="top"><tt>8</tt></td><td valign="top">The vertical resolution of the device in dots per inch. See also <a href="qpaintdevice.html#logicalDpiY">logicalDpiY</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmPhysicalDpiX</tt></td><td align="center" valign="top"><tt>9</tt></td><td valign="top">The horizontal resolution of the device in dots per inch. See also <a href="qpaintdevice.html#physicalDpiX">physicalDpiX</a>().</td></tr>
+<tr><td valign="top"><tt>QPaintDevice::PdmPhysicalDpiY</tt></td><td align="center" valign="top"><tt>10</tt></td><td valign="top">The vertical resolution of the device in dots per inch. See also <a href="qpaintdevice.html#physicalDpiY">physicalDpiY</a>().</td></tr>
+</table></p>
+<p>See also <a href="qpaintdevice.html#metric">metric</a>().</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="QPaintDevice"></a>QPaintDevice::QPaintDevice ()&nbsp;&nbsp;<tt> [protected]</tt></h3>
+<p>Constructs a paint device. This constructor can be invoked only from subclasses of <a href="qpaintdevice.html">QPaintDevice</a>.</p>
+<h3 class="fn"><a name="dtor.QPaintDevice"></a>QPaintDevice::~QPaintDevice ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Destroys the paint device and frees window system resources.</p>
+<h3 class="fn"><a name="depth"></a>int QPaintDevice::depth () const</h3>
+<p>Returns the bit depth (number of bit planes) of the paint device.</p>
+<h3 class="fn"><a name="height"></a>int QPaintDevice::height () const</h3>
+<p>Returns the height of the paint device in default coordinate system units (e.g&#x2e; pixels for <a href="qpixmap.html">QPixmap</a> and <a href="qwidget.html">QWidget</a>).</p>
+<p>See also <a href="qpaintdevice.html#heightMM">heightMM</a>().</p>
+<h3 class="fn"><a name="heightMM"></a>int QPaintDevice::heightMM () const</h3>
+<p>Returns the height of the paint device in millimeters.</p>
+<p>See also <a href="qpaintdevice.html#height">height</a>().</p>
+<h3 class="fn"><a name="logicalDpiX"></a>int QPaintDevice::logicalDpiX () const</h3>
+<p>Returns the horizontal resolution of the device in dots per inch, which is used when computing font sizes. For X11, this is usually the same as could be computed from <a href="qpaintdevice.html#widthMM">widthMM</a>(), but it varies on Windows.</p>
+<p>Note that if the logicalDpiX() doesn't equal the <a href="qpaintdevice.html#physicalDpiX">physicalDpiX</a>(), the corresponding <a href="qpaintengine.html">QPaintEngine</a> must handle the resolution mapping.</p>
+<p>See also <a href="qpaintdevice.html#logicalDpiY">logicalDpiY</a>() and <a href="qpaintdevice.html#physicalDpiX">physicalDpiX</a>().</p>
+<h3 class="fn"><a name="logicalDpiY"></a>int QPaintDevice::logicalDpiY () const</h3>
+<p>Returns the vertical resolution of the device in dots per inch, which is used when computing font sizes. For X11, this is usually the same as could be computed from <a href="qpaintdevice.html#heightMM">heightMM</a>(), but it varies on Windows.</p>
+<p>Note that if the logicalDpiY() doesn't equal the <a href="qpaintdevice.html#physicalDpiY">physicalDpiY</a>(), the corresponding <a href="qpaintengine.html">QPaintEngine</a> must handle the resolution mapping.</p>
+<p>See also <a href="qpaintdevice.html#logicalDpiX">logicalDpiX</a>() and <a href="qpaintdevice.html#physicalDpiY">physicalDpiY</a>().</p>
+<h3 class="fn"><a name="metric"></a>int QPaintDevice::metric ( <a href="qpaintdevice.html#PaintDeviceMetric-enum">PaintDeviceMetric</a> <i>metric</i> ) const&nbsp;&nbsp;<tt> [virtual protected]</tt></h3>
+<p>Returns the metric information for the given paint device <i>metric</i>.</p>
+<p>See also <a href="qpaintdevice.html#PaintDeviceMetric-enum">PaintDeviceMetric</a>.</p>
+<h3 class="fn"><a name="numColors"></a>int QPaintDevice::numColors () const</h3>
+<p>Returns the number of different colors available for the paint device. Since this value is an int, it will not be sufficient to represent the number of colors on 32 bit displays, in this case INT_MAX is returned instead.</p>
+<h3 class="fn"><a name="paintEngine"></a><a href="qpaintengine.html">QPaintEngine</a> * QPaintDevice::paintEngine () const&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Returns a pointer to the paint engine used for drawing on the device.</p>
+<h3 class="fn"><a name="paintingActive"></a>bool QPaintDevice::paintingActive () const</h3>
+<p>Returns true if the device is currently being painted on, i.e&#x2e; someone has called <a href="qpainter.html#begin">QPainter::begin</a>() but not yet called <a href="qpainter.html#end">QPainter::end</a>() for this device; otherwise returns false.</p>
+<p>See also <a href="qpainter.html#isActive">QPainter::isActive</a>().</p>
+<h3 class="fn"><a name="physicalDpiX"></a>int QPaintDevice::physicalDpiX () const</h3>
+<p>Returns the horizontal resolution of the device in dots per inch.</p>
+<p>Note that if the physicalDpiX() doesn't equal the <a href="qpaintdevice.html#logicalDpiX">logicalDpiX</a>(), the corresponding <a href="qpaintengine.html">QPaintEngine</a> must handle the resolution mapping.</p>
+<p>See also <a href="qpaintdevice.html#physicalDpiY">physicalDpiY</a>() and <a href="qpaintdevice.html#logicalDpiX">logicalDpiX</a>().</p>
+<h3 class="fn"><a name="physicalDpiY"></a>int QPaintDevice::physicalDpiY () const</h3>
+<p>Returns the horizontal resolution of the device in dots per inch.</p>
+<p>Note that if the physicalDpiY() doesn't equal the <a href="qpaintdevice.html#logicalDpiY">logicalDpiY</a>(), the corresponding <a href="qpaintengine.html">QPaintEngine</a> must handle the resolution mapping.</p>
+<p>See also <a href="qpaintdevice.html#physicalDpiX">physicalDpiX</a>() and <a href="qpaintdevice.html#logicalDpiY">logicalDpiY</a>().</p>
+<h3 class="fn"><a name="width"></a>int QPaintDevice::width () const</h3>
+<p>Returns the width of the paint device in default coordinate system units (e.g&#x2e; pixels for <a href="qpixmap.html">QPixmap</a> and <a href="qwidget.html">QWidget</a>).</p>
+<p>See also <a href="qpaintdevice.html#widthMM">widthMM</a>().</p>
+<h3 class="fn"><a name="widthMM"></a>int QPaintDevice::widthMM () const</h3>
+<p>Returns the width of the paint device in millimeters.</p>
+<p>See also <a href="qpaintdevice.html#width">width</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

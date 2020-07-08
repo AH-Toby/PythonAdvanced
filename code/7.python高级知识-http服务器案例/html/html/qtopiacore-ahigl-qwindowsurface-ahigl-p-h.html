@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.3: qwindowsurface_ahigl_p.h Example File (qtopiacore/ahigl/qwindowsurface_ahigl_p.h)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">qwindowsurface_ahigl_p.h Example File<br /><sup><sup>qtopiacore/ahigl/qwindowsurface_ahigl_p.h</sup></sup></h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 1992-2008 Trolltech ASA. All rights reserved.
+ **
+ ** This file is part of the documentation of the Qt Toolkit.
+ **
+ ** This file may be used under the terms of the GNU General Public
+** License versions 2.0 or 3.0 as published by the Free Software
+** Foundation and appearing in the files LICENSE.GPL2 and LICENSE.GPL3
+** included in the packaging of this file.  Alternatively you may (at
+** your option) use any later version of the GNU General Public
+** License if such license has been publicly approved by Trolltech ASA
+** (or its successors, if any) and the KDE Free Qt Foundation. 
+**
+** Please review the following information to ensure GNU General
+** Public Licensing requirements will be met:
+** http://trolltech.com/products/qt/licenses/licensing/opensource/. If
+** you are unsure which license is appropriate for your use, please
+** review the following information:
+** http://trolltech.com/products/qt/licenses/licensing/licensingoverview
+** or contact the sales department at sales@trolltech.com.
+**
+** In addition, as a special exception, Trolltech, as the sole
+** copyright holder for Qt Designer, grants users of the Qt/Eclipse
+** Integration plug-in the right for the Qt/Eclipse Integration to
+** link to functionality provided by Qt Designer and its related
+** libraries.
+**
+** This file is provided "AS IS" with NO WARRANTY OF ANY KIND,
+** INCLUDING THE WARRANTIES OF DESIGN, MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE. Trolltech reserves all rights not expressly
+** granted herein.
+ **
+ ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+ ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ **
+ ****************************************************************************/</span>
+
+ #ifndef QWINDOWSURFACE_AHIGL_P_H
+ #define QWINDOWSURFACE_AHIGL_P_H
+
+<span class="comment"> //</span>
+<span class="comment"> //</span>  W A R N I N G
+<span class="comment"> //</span>  -------------
+<span class="comment"> //</span>
+<span class="comment"> //</span> This file is not part of the Qt API.  It exists for the convenience
+<span class="comment"> //</span> of the QAhiGLWindowSurface class.  This header file may change from
+<span class="comment"> //</span> version to version without notice, or even be removed.
+<span class="comment"> //</span>
+<span class="comment"> //</span> We mean it.
+<span class="comment"> //</span>
+
+ #include &lt;QtOpenGL/private/qglwindowsurface_qws_p.h&gt;
+ #include &lt;GLES/gl.h&gt;
+ #include &lt;GLES/egl.h&gt;
+
+ class QAhiGLWindowSurfacePrivate;
+
+ class QAhiGLWindowSurface : public QWSGLWindowSurface
+ {
+ public:
+     QAhiGLWindowSurface(QWidget *widget, EGLDisplay eglDisplay,
+                         EGLSurface eglSurface, EGLContext eglContext);
+     QAhiGLWindowSurface(EGLDisplay eglDisplay, EGLSurface eglSurface,
+                         EGLContext eglContext);
+     ~QAhiGLWindowSurface();
+
+     QString key() const { return QLatin1String(&quot;ahigl&quot;); }
+     void setGeometry(const QRect &amp;rect);
+     QPaintDevice *paintDevice();
+     void beginPaint(const QRegion &amp;region);
+     bool isValid() const;
+
+     QByteArray permanentState() const;
+     void setPermanentState(const QByteArray &amp;);
+
+     QImage image() const { return QImage(); }
+
+     GLuint textureId() const;
+
+ private:
+     QAhiGLWindowSurfacePrivate *d_ptr;
+ };
+
+ #endif <span class="comment">//</span> QWINDOWSURFACE_AHIGL_P_H</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

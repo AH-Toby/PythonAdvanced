@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.3: glbox.cpp Example File (activeqt/opengl/glbox.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">glbox.cpp Example File<br /><sup><sup>activeqt/opengl/glbox.cpp</sup></sup></h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 1992-2008 Trolltech ASA. All rights reserved.
+ **
+ ** This file is part of the documentation of the Qt Toolkit.
+ **
+ ** This file may be used under the terms of the GNU General Public
+** License versions 2.0 or 3.0 as published by the Free Software
+** Foundation and appearing in the files LICENSE.GPL2 and LICENSE.GPL3
+** included in the packaging of this file.  Alternatively you may (at
+** your option) use any later version of the GNU General Public
+** License if such license has been publicly approved by Trolltech ASA
+** (or its successors, if any) and the KDE Free Qt Foundation. 
+**
+** Please review the following information to ensure GNU General
+** Public Licensing requirements will be met:
+** http://trolltech.com/products/qt/licenses/licensing/opensource/. If
+** you are unsure which license is appropriate for your use, please
+** review the following information:
+** http://trolltech.com/products/qt/licenses/licensing/licensingoverview
+** or contact the sales department at sales@trolltech.com.
+**
+** In addition, as a special exception, Trolltech, as the sole
+** copyright holder for Qt Designer, grants users of the Qt/Eclipse
+** Integration plug-in the right for the Qt/Eclipse Integration to
+** link to functionality provided by Qt Designer and its related
+** libraries.
+**
+** This file is provided "AS IS" with NO WARRANTY OF ANY KIND,
+** INCLUDING THE WARRANTIES OF DESIGN, MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE. Trolltech reserves all rights not expressly
+** granted herein.
+ **
+ ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+ ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ **
+ ****************************************************************************/</span>
+
+<span class="comment"> /****************************************************************************
+ **
+ ** This is a simple QGLWidget displaying an openGL wireframe box
+ **
+ ** The OpenGL code is mostly borrowed from Brian Pauls &quot;spin&quot; example
+ ** in the Mesa distribution
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;glbox.h&quot;
+ #include &lt;QAxAggregated&gt;
+ #include &lt;QUuid&gt;
+ #include &lt;objsafe.h&gt;
+
+ #if defined(Q_CC_MSVC)
+ #pragma warning(disable:4305) <span class="comment">//</span> init: truncation from const double to float
+ #endif
+
+<span class="comment"> /*!
+   Create a GLBox widget
+ */</span>
+
+ GLBox::GLBox( QWidget* parent, const char* name )
+     : QGLWidget( parent )
+ {
+     xRot = yRot = zRot = 0.0;           <span class="comment">//</span> default object rotation
+     scale = 1.25;                       <span class="comment">//</span> default object scale
+     object = 0;
+ }
+
+<span class="comment"> /*!
+   Release allocated resources
+ */</span>
+
+ GLBox::~GLBox()
+ {
+     makeCurrent();
+     glDeleteLists( object, 1 );
+ }
+
+<span class="comment"> /*!
+   Paint the box. The actual openGL commands for drawing the box are
+   performed here.
+ */</span>
+
+ void GLBox::paintGL()
+ {
+     glClear( GL_COLOR_BUFFER_BIT );
+
+     glLoadIdentity();
+     glTranslatef( 0.0, 0.0, -10.0 );
+     glScalef( scale, scale, scale );
+
+     glRotatef( xRot, 1.0, 0.0, 0.0 );
+     glRotatef( yRot, 0.0, 1.0, 0.0 );
+     glRotatef( zRot, 0.0, 0.0, 1.0 );
+
+     glCallList( object );
+ }
+
+<span class="comment"> /*!
+   Set up the OpenGL rendering state, and define display list
+ */</span>
+
+ void GLBox::initializeGL()
+ {
+     qglClearColor(Qt::black);           <span class="comment">//</span> Let OpenGL clear to black
+     object = makeObject();              <span class="comment">//</span> Generate an OpenGL display list
+     glShadeModel( GL_FLAT );
+ }
+
+<span class="comment"> /*!
+   Set up the OpenGL view port, matrix mode, etc.
+ */</span>
+
+ void GLBox::resizeGL( int w, int h )
+ {
+     glViewport( 0, 0, (GLint)w, (GLint)h );
+     glMatrixMode( GL_PROJECTION );
+     glLoadIdentity();
+     glFrustum( -1.0, 1.0, -1.0, 1.0, 5.0, 15.0 );
+     glMatrixMode( GL_MODELVIEW );
+ }
+
+<span class="comment"> /*!
+   Generate an OpenGL display list for the object to be shown, i.e. the box
+ */</span>
+
+ GLuint GLBox::makeObject()
+ {
+     GLuint list;
+
+     list = glGenLists( 1 );
+
+     glNewList( list, GL_COMPILE );
+
+     qglColor(Qt::white);                      <span class="comment">//</span> Shorthand for glColor3f or glIndex
+
+     glLineWidth( 2.0 );
+
+     glBegin( GL_LINE_LOOP );
+     glVertex3f(  1.0,  0.5, -0.4 );
+     glVertex3f(  1.0, -0.5, -0.4 );
+     glVertex3f( -1.0, -0.5, -0.4 );
+     glVertex3f( -1.0,  0.5, -0.4 );
+     glEnd();
+
+     glBegin( GL_LINE_LOOP );
+     glVertex3f(  1.0,  0.5, 0.4 );
+     glVertex3f(  1.0, -0.5, 0.4 );
+     glVertex3f( -1.0, -0.5, 0.4 );
+     glVertex3f( -1.0,  0.5, 0.4 );
+     glEnd();
+
+     glBegin( GL_LINES );
+     glVertex3f(  1.0,  0.5, -0.4 );   glVertex3f(  1.0,  0.5, 0.4 );
+     glVertex3f(  1.0, -0.5, -0.4 );   glVertex3f(  1.0, -0.5, 0.4 );
+     glVertex3f( -1.0, -0.5, -0.4 );   glVertex3f( -1.0, -0.5, 0.4 );
+     glVertex3f( -1.0,  0.5, -0.4 );   glVertex3f( -1.0,  0.5, 0.4 );
+     glEnd();
+
+     glEndList();
+
+     return list;
+ }
+
+<span class="comment"> /*!
+   Set the rotation angle of the object to \e degrees around the X axis.
+ */</span>
+
+ void GLBox::setXRotation( int degrees )
+ {
+     xRot = (GLfloat)(degrees % 360);
+     updateGL();
+ }
+
+<span class="comment"> /*!
+   Set the rotation angle of the object to \e degrees around the Y axis.
+ */</span>
+
+ void GLBox::setYRotation( int degrees )
+ {
+     yRot = (GLfloat)(degrees % 360);
+     updateGL();
+ }
+
+<span class="comment"> /*!
+   Set the rotation angle of the object to \e degrees around the Z axis.
+ */</span>
+
+ void GLBox::setZRotation( int degrees )
+ {
+     zRot = (GLfloat)(degrees % 360);
+     updateGL();
+ }
+
+ class ObjectSafetyImpl : public QAxAggregated,
+                          public IObjectSafety
+ {
+ public:
+     ObjectSafetyImpl() {}
+
+     long queryInterface( const QUuid &amp;iid, void **iface )
+     {
+         *iface = 0;
+         if ( iid == IID_IObjectSafety )
+             *iface = (IObjectSafety*)this;
+         else
+             return E_NOINTERFACE;
+
+         AddRef();
+         return S_OK;
+     }
+
+     QAXAGG_IUNKNOWN;
+
+     HRESULT WINAPI GetInterfaceSafetyOptions( REFIID riid, DWORD *pdwSupportedOptions, DWORD *pdwEnabledOptions )
+     {
+         *pdwSupportedOptions = INTERFACESAFE_FOR_UNTRUSTED_DATA | INTERFACESAFE_FOR_UNTRUSTED_CALLER;
+         *pdwEnabledOptions = INTERFACESAFE_FOR_UNTRUSTED_DATA | INTERFACESAFE_FOR_UNTRUSTED_CALLER;
+         return S_OK;
+     }
+     HRESULT WINAPI SetInterfaceSafetyOptions( REFIID riid, DWORD pdwSupportedOptions, DWORD pdwEnabledOptions )
+     {
+         return S_OK;
+     }
+ };
+
+ QAxAggregated *GLBox::createAggregate()
+ {
+     return new ObjectSafetyImpl();
+ }</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

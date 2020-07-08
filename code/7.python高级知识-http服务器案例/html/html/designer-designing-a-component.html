@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- /fasttmp/mkdist-qt-4.3.5-1211793125/qtopia-core-opensource-src-4.3.5/doc/src/designer-manual.qdoc -->
+<head>
+  <title>Qt 4.3: Designing a Component with Qt Designer</title>
+  <link rel="prev" href="designer-getting-started.html" />
+  <link rel="contents" href="designer-manual.html" />
+  <link rel="next" href="designer-editing-mode.html" />
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><p>
+[Previous: <a href="designer-getting-started.html">Getting Started with Qt Designer</a>]
+[<a href="designer-manual.html">Contents</a>]
+[Next: <a href="designer-editing-mode.html">Qt Designer's Widget Editing Mode</a>]
+</p>
+<h1 align="center">Designing a Component with Qt Designer<br /><small></small></h1>
+<ul><li><a href="#creating-a-form">Creating a Form</a></li>
+<li><a href="#composing-a-dialog">Composing a Dialog</a></li>
+<li><a href="#creating-a-layout">Creating a Layout</a></li>
+<li><a href="#configuring-connections">Configuring Connections</a></li>
+</ul>
+<p>In this chapter we will look at the main steps that users will take when creating new graphical user interfaces with <i>Qt Designer</i>. Usually, creating a new component for an application will involve various activities:</p>
+<ul>
+<li>Deciding which kind of component to use.</li>
+<li>Composing the user interface by adding widgets from the widget box to the form.</li>
+<li>Laying out the contents of the form.</li>
+<li>Connecting widgets together using their signals and slots.</li>
+<li>Previewing the form.</li>
+</ul>
+<p>Users may find that they prefer to perform these activities in a different order, and we expect that for complex widgets the design process may involve many iterations of these steps. However, we present each of the activities in the above order, and leave it up to the user to find the approach that suits them best.</p>
+<p>To demonstrate the processes used to create a new component, we will take a look at the steps needed to create a simple dialog with <i>Qt Designer</i>. We use the dialog to illustrate certain features of the tool. General concepts are explained in the gray boxes in each section, and you can follow links from some of these to read more about the features being discussed.</p>
+<a name="creatingaform"></a><a name="creating-a-form"></a>
+<h2>Creating a Form</h2>
+<p><i>Qt Designer</i> can be used to create user interfaces for different purposes, and provides different kinds of form templates for each of these. The first choice that you face when creating a new user interface is to decide which kind of form you will be using; for example, you may require a dialog rather than a generic custom widget. New forms can be created by opening the <b>File</b> menu and selecting the <b>New Form..&#x2e;</b> option, or by pressing <b>Ctrl+N</b>.</p>
+<a name="choosingaform"></a><p><table align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-choosing-form.png" /></td><td><b>Choosing a Form</b><p><i>Qt Designer</i> provides a number of template forms that are suitable for different kinds of components. You can either choose one of these templates or open a form that was saved earlier.</p>
+</td></tr>
+</table></p>
+<p>If your requirements later change so that you need to supply a different type of component, you can easily reuse the contents of your existing form. For our example, we select the <b>Dialog with Buttons Bottom</b> template, and a form with <b>Ok</b> and <b>Cancel</b> buttons in the right bottom corner is created ready for use.</p>
+<a name="composingadialog"></a><a name="composing-a-dialog"></a>
+<h2>Composing a Dialog</h2>
+<p>The empty form is displayed as an empty dialog with a grid pattern overlayed on the widget area in a style similar to many drawing packages. <i>Qt Designer</i> provides four different editing modes:</p>
+<a name="editingmodes"></a><p><table align="center" cellpadding="2" cellspacing="1" border="0">
+<thead><tr valign="top" class="qt-style"><th></th><th><b>Editing Modes</b></th></tr></thead>
+<tr valign="top" class="odd"><td><img src="images/designer-widget-tool.png" /></td><td>In <a href="designer-editing-mode.html">Widget Editing Mode</a>, we can change the appearance of the form, add layouts, and edit the properties of each widget.</td></tr>
+<tr valign="top" class="even"><td><img src="images/designer-connection-tool.png" /></td><td>In <a href="designer-connection-mode.html">Signals and Slots Editing Mode</a>, we can connect widgets together using Qt's signals and slots mechanism.</td></tr>
+<tr valign="top" class="odd"><td><img src="images/designer-buddy-tool.png" /></td><td>In <a href="designer-buddy-mode.html">Buddy Editing Mode</a>, buddy widgets can be assigned to label widgets to help them handle keyboard focus correctly.</td></tr>
+<tr valign="top" class="even"><td><img src="images/designer-tab-order-tool.png" /></td><td>In <a href="designer-tab-order.html">Tab Order Editing Mode</a>, we can set the order in which widgets receive the keyboard focus.</td></tr>
+</table></p>
+<p>We ensure that <i>Qt Designer</i> is in widget editing mode by opening the <b>Edit</b> menu and selecting <b>Edit Widgets</b>. This makes it possible for widgets to be dragged from the widget box onto the form.</p>
+<p>For our example, we will develop a dialog that lets the user create an image with a given size and color depth - these properties can be represented by spinboxes and a combobox. We will also provide a line edit so that the user can specify a name for the image if they want.</p>
+<p>Before we begin adding widgets to the form, it is useful to resize it to give us the required amount of space to work with. We can make the form larger than necessary because it can be resized later.</p>
+<p>We start composing the dialog by placing some text labels onto the form. This is achieved by dragging each <b>Label</b> from the <b>Display Widgets</b> section of the widget box onto the form. We add a <b>Line Edit</b>, some <b>Spin Box</b>es and a <b>Combo Box</b> from the <b>Input Widgets</b> section of the widget box, one <b>Vertical Spacer</b> and one <b>Horizontal Spacer</b> from the <b>Spacers</b> section (represented on the form as blue springs), and two <b>Push Button</b>s from the <b>Buttons</b> section. Note that a <b>Dialog Button Box</b> should be used to ensure that the dialog buttons are positioned correctly on each platform. For explanatory reasons, we use single buttons throughout the example.</p>
+<p>Widgets and spacers can be moved around on the form by dragging them, or by using the cursor keys. A widget can be resized by dragging the resize handles that appear when it is selected - click the left mouse button over the widget to select it. It can be helpful to resize <b>Label</b> widgets so that all of their text is displayed, but this is not necessary as they will be displayed fully when we add them to a layout. It is useful to place the widgets where they are needed on the form because it helps visualize how it will appear when it is finished, but we do not need to fine tune the positions of widgets - this task is the responsibility of the form's layout objects which we will add later.</p>
+<a name="addingwidgetstoaform"></a><p><table align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-dialog-initial.png" /></td><td><b>Adding Widgets to a Form</b><p>The dialog initially contains standard widgets and spacers. All the objects on the form can be freely positioned. The spacers have no effect since they have not yet been included in any layouts.</p>
+</td></tr>
+</table></p>
+<p>The widgets' initial values can be changed in the property editor which can be accessed by opening the <b>Tools</b> menu in <i>Qt Designer</i>'s main window and selecting <b>Property Editor</b>, or by pressing <b>Ctrl+I</b>. The property editor always shows the properties of the currently selected object, so we just need to select each of the widgets in turn to access their properties.</p>
+<p>For the labels and push buttons, we only need to change the <tt>text</tt> property of each widget; for the spinboxes, we must change the <tt>value</tt>, <tt>minimum</tt>, and <tt>maximum</tt> properties. The dialog's window title can also be changed using the property editor - click on the form itself to access the dialog's properties.</p>
+<p>It is usually a good idea to give meaningful names to widgets in case you want to connect their signals to slots in other components, or refer to the widgets by name in your application.</p>
+<a name="thepropertyeditor"></a><p><table align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-property-editor-link.png" /></td><td><b>The Property Editor</b><p>All designable widget properties can be edited in the <a href="designer-editing-mode.html#the-property-editor">Property Editor</a> window.</p>
+<p>The properties can be edited by using the controls provided; the type of control supplied for each property depends on the type of data it contains. Any changes made to the widget's properties cause it to be updated immediately.</p>
+</td></tr>
+</table></p>
+<p>Once all the widgets are in position, they need to be placed into one or more layouts. Layouts ensure that the widgets are the correct size, and are correctly positioned on the form.</p>
+<a name="creatingalayout"></a><a name="creating-a-layout"></a>
+<h2>Creating a Layout</h2>
+<p>In Qt, widget positions and sizes are organized by layout managers. Before a form can be used, it is necessary to put each of the widgets into layouts, and set the form's overall layout. <i>Qt Designer</i> provides all the standard types of layout, making it simple to experiment with different ways of arranging components.</p>
+<p>At any point during editing, we can experiment with the layout of widgets on the form by selecting a group of objects and applying a layout to them. Any of the standard Qt layouts (horizontal, vertical, and grid) can be used. To apply a layout to a selection of objects, click the appropriate icon in <i>Qt Designer</i>'s tool bar, or select the layout from the form's context menu.</p>
+<p>We begin laying out our dialog by putting all the labels and their associated input widgets into a grid layout. To do this, we need to ensure that all the widgets are lined up in a grid arrangement. We put the push buttons into a horizontal layout with the horizontal spacer.</p>
+<a name="placingwidgetsinlayouts"></a><p><table align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-dialog-layout.png" /></td><td><b>Placing Widgets in Layouts</b><p>The widgets are placed in layouts using as little space as possible, but the spacers can be used to reserve empty space.</p>
+<p>For example, the horizontal spacer in the lower layout reserves some space to the left of the push buttons, making that particular layout larger than normal. This will ensure that the buttons are positioned on the right hand side of the dialog.</p>
+<p>We will examine the use of layouts in more detail in <a href="designer-editing-mode.html">Widget Editing Mode</a>.</p>
+</td></tr>
+</table></p>
+<p>The property editor can also be used to change the appearance of layouts on the form. To access the properties of a layout, we click inside the layout, taking care not to click any of the widgets. The <tt>layoutLeftMargin</tt>, <tt>layoutTopMargin</tt>, <tt>layoutRightMargin</tt> and <tt>layoutBottomMargin</tt> properties control the thickness of the margin around the edges of the layout, and <tt>layoutSpacing</tt> determines the space between widgets. If the selected layout is of grid type we can alter horizontal and vertical spacing independently using <tt>layoutHorizontalSpacing</tt> and layoutVerticalSpacing properties. By default, layout margins and spacings are not marked as changed. In that case while using the component in a real application, the values of those properties can differ from those used in <i>Qt Designer</i> and will depend on the application's <a href="qstyle.html">QStyle</a>.</p>
+<p>We can create more complex layouts by selecting the layouts and placing them into other layouts. But, in our example, we really only need a top-level vertical layout to ensure that the dialog will appear correctly. To do this, we click the form to ensure that no objects are selected and then apply the vertical layout. The form may now be larger than necessary, but we can resize it to make it smaller.</p>
+<p align="center"><img src="images/designer-dialog-final.png" /></p><p>Once all the objects on the form have been placed in layouts, we can concentrate on connecting them together using Qt's signals and slots mechanism.</p>
+<a name="configuringconnections"></a><a name="configuring-connections"></a>
+<h2>Configuring Connections</h2>
+<p>Objects on the form can be connected together using their signals and slots, making it unnecessary to write code in your application to connect many standard widgets together. In addition, <i>Qt Designer</i>'s signal and slot editor provides a visual representation of the signal and slot connections in the form that can help other developers understand how the final component will behave.</p>
+<p>We will show how to configure a connection by connecting the <a href="qlineedit.html#returnPressed">returnPressed()</a> signal of the line edit in our dialog to the <b>OK</b> button's <a href="qabstractbutton.html#animateClick">animateClick()</a> slot. We change into signals and slots editing mode by opening the <b>Edit</b> menu and selecting <b>Edit Signals/Slots</b>. The objects in the form will now become highlighted as the cursor passes over them.</p>
+<a name="connectingwidgets"></a><p><table align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-making-connection.png" /></td><td><b>Connecting Widgets</b><p>To connect the line edit to the <b>OK</b> button, we click on the widget and drag the cursor toward the push button; a line extends from the line edit to the cursor.</p>
+</td></tr>
+</table></p>
+<p>When the cursor is over the <b>OK</b> button, we release the mouse button to complete the connection, and a dialog opens to allow us to choose compatible signals and slots. Since the <a href="qlineedit.html#returnPressed">returnPressed()</a> signal and the <a href="qabstractbutton.html#animateClick">animateClick()</a> slot have compatible signatures, we can use them together to &quot;click&quot; the <b>OK</b> button whenever the return key is pressed in the line edit. To try this out, we can open a preview of the dialog by pressing <b>Ctrl+R</b> or by opening the <b>Form</b> menu and selecting <b>Preview</b>.</p>
+<a name="previewingaform"></a><p><table align="center" cellpadding="2" cellspacing="1" border="0">
+<tr valign="top" class="odd"><td><img src="images/designer-dialog-preview.png" /></td><td><b>Previewing a Form</b><p>When you preview a form, it appears just as it would in your application. You can resize it to see how the layouts used to manage the child widgets respond to different window sizes, and use this information to fine tune the form's design.</p>
+</td></tr>
+</table></p>
+<p>
+[Previous: <a href="designer-getting-started.html">Getting Started with Qt Designer</a>]
+[<a href="designer-manual.html">Contents</a>]
+[Next: <a href="designer-editing-mode.html">Qt Designer's Widget Editing Mode</a>]
+</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

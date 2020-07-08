@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Qt 4.3: printpreview.cpp Example File (demos/textedit/printpreview.cpp)</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">printpreview.cpp Example File<br /><sup><sup>demos/textedit/printpreview.cpp</sup></sup></h1>
+<pre><span class="comment"> /****************************************************************************
+ **
+ ** Copyright (C) 2004-2008 Trolltech ASA. All rights reserved.
+ **
+ ** This file is part of the documentation of the Qt Toolkit.
+ **
+ ** This file may be used under the terms of the GNU General Public
+** License versions 2.0 or 3.0 as published by the Free Software
+** Foundation and appearing in the files LICENSE.GPL2 and LICENSE.GPL3
+** included in the packaging of this file.  Alternatively you may (at
+** your option) use any later version of the GNU General Public
+** License if such license has been publicly approved by Trolltech ASA
+** (or its successors, if any) and the KDE Free Qt Foundation. 
+**
+** Please review the following information to ensure GNU General
+** Public Licensing requirements will be met:
+** http://trolltech.com/products/qt/licenses/licensing/opensource/. If
+** you are unsure which license is appropriate for your use, please
+** review the following information:
+** http://trolltech.com/products/qt/licenses/licensing/licensingoverview
+** or contact the sales department at sales@trolltech.com.
+**
+** In addition, as a special exception, Trolltech, as the sole
+** copyright holder for Qt Designer, grants users of the Qt/Eclipse
+** Integration plug-in the right for the Qt/Eclipse Integration to
+** link to functionality provided by Qt Designer and its related
+** libraries.
+**
+** This file is provided "AS IS" with NO WARRANTY OF ANY KIND,
+** INCLUDING THE WARRANTIES OF DESIGN, MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE. Trolltech reserves all rights not expressly
+** granted herein.
+ **
+ ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+ ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ **
+ ****************************************************************************/</span>
+
+ #include &quot;printpreview.h&quot;
+
+ #include &lt;QAbstractScrollArea&gt;
+ #include &lt;QPrintDialog&gt;
+ #include &lt;QPrinter&gt;
+ #include &lt;QToolBar&gt;
+ #include &lt;QAction&gt;
+ #include &lt;QTextFormat&gt;
+ #include &lt;QMouseEvent&gt;
+ #include &lt;QTextFrame&gt;
+ #include &lt;QTextDocument&gt;
+ #include &lt;QAbstractTextDocumentLayout&gt;
+ #include &lt;QScrollBar&gt;
+ #include &lt;QPainter&gt;
+ #include &lt;QDebug&gt;
+ #include &lt;QPageSetupDialog&gt;
+ #include &lt;QStatusBar&gt;
+
+ #ifdef Q_WS_MAC
+ const QString rsrcPath = &quot;:/images/mac&quot;;
+ #else
+ const QString rsrcPath = &quot;:/images/win&quot;;
+ #endif
+
+ static inline int inchesToPixels(float inches, QPaintDevice *device)
+ {
+     return qRound(inches * device-&gt;logicalDpiY());
+ }
+
+ static inline qreal mmToInches(double mm)
+ {
+     return mm*0.039370147;
+ }
+
+ class PreviewView : public QAbstractScrollArea
+ {
+     Q_OBJECT
+ public:
+     PreviewView(QTextDocument *document, PrintPreview *printPrev);
+
+     inline void updateLayout() { resizeEvent(0); viewport()-&gt;update(); }
+
+ public slots:
+     void zoomIn();
+     void zoomOut();
+
+ protected:
+     virtual void paintEvent(QPaintEvent *e);
+     virtual void resizeEvent(QResizeEvent *);
+     virtual void mousePressEvent(QMouseEvent *e);
+     virtual void mouseMoveEvent(QMouseEvent *e);
+     virtual void mouseReleaseEvent(QMouseEvent *e);
+
+ private:
+     void paintPage(QPainter *painter, int page);
+     QTextDocument *doc;
+     qreal scale;
+     int interPageSpacing;
+     QPoint mousePressPos;
+     QPoint scrollBarValuesOnMousePress;
+     PrintPreview *printPreview;
+ };
+
+ PreviewView::PreviewView(QTextDocument *document, PrintPreview *printPrev)
+     : printPreview(printPrev)
+ {
+     verticalScrollBar()-&gt;setSingleStep(20);
+     horizontalScrollBar()-&gt;setSingleStep(20);
+
+     viewport()-&gt;setBackgroundRole(QPalette::Dark);
+
+     doc = document;
+     scale = 1.0;
+     interPageSpacing = 30;
+ }
+
+ void PreviewView::zoomIn()
+ {
+     scale += 0.2;
+     resizeEvent(0);
+     viewport()-&gt;update();
+ }
+
+ void PreviewView::zoomOut()
+ {
+     scale -= 0.2;
+     resizeEvent(0);
+     viewport()-&gt;update();
+ }
+
+ void PreviewView::paintEvent(QPaintEvent *)
+ {
+     QPainter p(viewport());
+
+     p.translate(-horizontalScrollBar()-&gt;value(), -verticalScrollBar()-&gt;value());
+     p.translate(interPageSpacing, interPageSpacing);
+
+     const int pages = doc-&gt;pageCount();
+     for (int i = 0; i &lt; pages; ++i) {
+         p.save();
+         p.scale(scale, scale);
+
+         paintPage(&amp;p, i);
+
+         p.restore();
+         p.translate(0, interPageSpacing + printPreview-&gt;paperSize.height() * scale);
+     }
+ }
+
+ void PreviewView::paintPage(QPainter *painter, int page)
+ {
+     const QSizeF pgSize = doc-&gt;pageSize();
+
+     QColor col(Qt::black);
+
+     painter-&gt;setPen(col);
+     painter-&gt;setBrush(Qt::white);
+     painter-&gt;drawRect(QRectF(QPointF(0, 0), printPreview-&gt;paperSize));
+     painter-&gt;setBrush(Qt::NoBrush);
+
+     col = col.light();
+     painter-&gt;drawLine(QLineF(printPreview-&gt;paperSize.width(), 1,
+                              printPreview-&gt;paperSize.width(), printPreview-&gt;paperSize.height() - 1));
+
+     col = col.light();
+     painter-&gt;drawLine(QLineF(printPreview-&gt;paperSize.width(), 2,
+                              printPreview-&gt;paperSize.width(), printPreview-&gt;paperSize.height() - 2));
+
+     QRectF docRect(QPointF(0, page * pgSize.height()), pgSize);
+     QAbstractTextDocumentLayout::PaintContext ctx;
+     ctx.clip = docRect;
+
+     <span class="comment">//</span> don't use the system palette text as default text color, on HP/UX
+     <span class="comment">//</span> for example that's white, and white text on white paper doesn't
+     <span class="comment">//</span> look that nice
+     ctx.palette.setColor(QPalette::Text, Qt::black);
+
+     painter-&gt;translate(0, - page * pgSize.height());
+
+     painter-&gt;translate(printPreview-&gt;pageTopLeft);
+     painter-&gt;setClipRect(docRect);<span class="comment">//</span>.translated(printPreview-&gt;pageTopLeft));
+     doc-&gt;documentLayout()-&gt;draw(painter, ctx);
+ }
+
+ void PreviewView::resizeEvent(QResizeEvent *)
+ {
+     const QSize viewportSize = viewport()-&gt;size();
+
+     QSize docSize;
+     docSize.setWidth(qRound(printPreview-&gt;paperSize.width() * scale + 2 * interPageSpacing));
+     const int pageCount = doc-&gt;pageCount();
+     docSize.setHeight(qRound(pageCount * printPreview-&gt;paperSize.height() * scale + (pageCount + 1) * interPageSpacing));
+
+     horizontalScrollBar()-&gt;setRange(0, docSize.width() - viewportSize.width());
+     horizontalScrollBar()-&gt;setPageStep(viewportSize.width());
+
+     verticalScrollBar()-&gt;setRange(0, docSize.height() - viewportSize.height());
+     verticalScrollBar()-&gt;setPageStep(viewportSize.height());
+ }
+
+ void PreviewView::mousePressEvent(QMouseEvent *e)
+ {
+     mousePressPos = e-&gt;pos();
+     scrollBarValuesOnMousePress.rx() = horizontalScrollBar()-&gt;value();
+     scrollBarValuesOnMousePress.ry() = verticalScrollBar()-&gt;value();
+     e-&gt;accept();
+ }
+
+ void PreviewView::mouseMoveEvent(QMouseEvent *e)
+ {
+     if (mousePressPos.isNull()) {
+         e-&gt;ignore();
+         return;
+     }
+
+     horizontalScrollBar()-&gt;setValue(scrollBarValuesOnMousePress.x() - e-&gt;pos().x() + mousePressPos.x());
+     verticalScrollBar()-&gt;setValue(scrollBarValuesOnMousePress.y() - e-&gt;pos().y() + mousePressPos.y());
+     horizontalScrollBar()-&gt;update();
+     verticalScrollBar()-&gt;update();
+     e-&gt;accept();
+ }
+
+ void PreviewView::mouseReleaseEvent(QMouseEvent *e)
+ {
+     mousePressPos = QPoint();
+     e-&gt;accept();
+ }
+
+ PrintPreview::PrintPreview(const QTextDocument *document, QWidget *parent)
+     : QMainWindow(parent), printer(QPrinter::HighResolution)
+ {
+     setWindowTitle(tr(&quot;TextEdit Demo - Print Preview&quot;));
+
+     printer.setFullPage(true);
+     doc = document-&gt;clone();
+
+     view = new PreviewView(doc, this);
+     setCentralWidget(view);
+     resize(800, 600);
+
+     doc-&gt;setUseDesignMetrics(true);
+     doc-&gt;documentLayout()-&gt;setPaintDevice(view-&gt;viewport());
+
+     <span class="comment">//</span> add a nice 2 cm margin
+     const qreal margin = inchesToPixels(mmToInches(20), this);
+     QTextFrameFormat fmt = doc-&gt;rootFrame()-&gt;frameFormat();
+     fmt.setMargin(margin);
+     doc-&gt;rootFrame()-&gt;setFrameFormat(fmt);
+
+     setup();
+
+     QFont f(doc-&gt;defaultFont());
+     f.setPointSize(10);
+     doc-&gt;setDefaultFont(f);
+
+     QToolBar *tb = addToolBar(tr(&quot;Print&quot;));
+     tb-&gt;setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+
+     QAction *a;
+     a = new QAction(<span class="comment">/*QIcon(rsrcPath + &quot;/fileprint.png&quot;),*/</span> tr(&quot;&amp;Print...&quot;), this);
+     a-&gt;setShortcut(Qt::CTRL + Qt::Key_P);
+     connect(a, SIGNAL(triggered()), this, SLOT(print()));
+     tb-&gt;addAction(a);
+
+     a = new QAction(this);
+     a-&gt;setText(tr(&quot;Page Setup...&quot;));
+     connect(a, SIGNAL(triggered()), this, SLOT(pageSetup()));
+     tb-&gt;addAction(a);
+
+     tb-&gt;addSeparator();
+
+     a = new QAction(QIcon(rsrcPath + &quot;/zoomin.png&quot;), tr(&quot;Zoom In&quot;), this);
+     connect(a, SIGNAL(triggered()), view, SLOT(zoomIn()));
+     tb-&gt;addAction(a);
+
+     a = new QAction(QIcon(rsrcPath + &quot;/zoomout.png&quot;), tr(&quot;Zoom Out&quot;), this);
+     connect(a, SIGNAL(triggered()), view, SLOT(zoomOut()));
+     tb-&gt;addAction(a);
+
+     tb-&gt;addSeparator();
+
+     a = new QAction(this);
+     a-&gt;setText(tr(&quot;&amp;Close&quot;));
+     connect(a, SIGNAL(triggered()), this, SLOT(close()));
+     tb-&gt;addAction(a);
+
+     statusBar()-&gt;setSizeGripEnabled(true);
+ }
+
+ void PrintPreview::setup()
+ {
+     QSizeF page = printer.pageRect().size();
+     paperSize = printer.paperRect().size();
+     paperSize.rwidth() *= qreal(view-&gt;logicalDpiX()) / printer.logicalDpiX();
+     paperSize.rheight() *= qreal(view-&gt;logicalDpiY()) / printer.logicalDpiY();
+
+     pageTopLeft = printer.pageRect().topLeft();
+     pageTopLeft.rx() *= qreal(view-&gt;logicalDpiX()) / printer.logicalDpiX();
+     pageTopLeft.ry() *= qreal(view-&gt;logicalDpiY()) / printer.logicalDpiY();
+
+     page.setWidth(page.width() * view-&gt;logicalDpiX() / printer.logicalDpiX());
+     page.setHeight(page.height() * view-&gt;logicalDpiY() / printer.logicalDpiY());
+
+     <span class="comment">//</span> add a nice 2 cm margin
+     const qreal margin = inchesToPixels(mmToInches(20), this);
+     QTextFrameFormat fmt = doc-&gt;rootFrame()-&gt;frameFormat();
+     fmt.setMargin(margin);
+     doc-&gt;rootFrame()-&gt;setFrameFormat(fmt);
+
+     doc-&gt;setPageSize(page);
+ }
+
+ PrintPreview::~PrintPreview()
+ {
+     delete doc;
+ }
+
+ void PrintPreview::print()
+ {
+     QPrintDialog *dlg = new QPrintDialog(&amp;printer, this);
+     if (dlg-&gt;exec() == QDialog::Accepted) {
+         doc-&gt;print(&amp;printer);
+     }
+     delete dlg;
+ }
+
+ void PrintPreview::pageSetup()
+ {
+     QPageSetupDialog dlg(&amp;printer, this);
+     if (dlg.exec() == QDialog::Accepted) {
+         setup();
+         view-&gt;updateLayout();
+     }
+ }
+
+ #include &quot;printpreview.moc&quot;</pre>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>

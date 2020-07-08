@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!-- /fasttmp/mkdist-qt-4.3.5-1211793125/qtopia-core-opensource-src-4.3.5/src/gui/embedded/qwindowsystem_qws.cpp -->
+<head>
+  <title>Qt 4.3: QWSScreenSaver Class Reference</title>
+  <link href="classic.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" valign="top" width="32"><a href="http://www.trolltech.com/products/qt"><img src="images/qt-logo.png" align="left" width="32" height="32" border="0" /></a></td>
+<td width="1">&nbsp;&nbsp;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&nbsp;&middot; <a href="classes.html"><font color="#004faf">All&nbsp;Classes</font></a>&nbsp;&middot; <a href="mainclasses.html"><font color="#004faf">Main&nbsp;Classes</font></a>&nbsp;&middot; <a href="groups.html"><font color="#004faf">Grouped&nbsp;Classes</font></a>&nbsp;&middot; <a href="modules.html"><font color="#004faf">Modules</font></a>&nbsp;&middot; <a href="functions.html"><font color="#004faf">Functions</font></a></td>
+<td align="right" valign="top" width="230"><a href="http://www.trolltech.com"><img src="images/trolltech-logo.png" align="right" width="203" height="32" border="0" /></a></td></tr></table><h1 align="center">QWSScreenSaver Class Reference<br /><sup><sup>[<a href="qtgui.html">QtGui</a> module]</sup></sup></h1>
+<p>The QWSScreenSaver class is a base class for screensavers in Qtopia Core. <a href="#details">More...</a></p>
+<pre> #include &lt;QWSScreenSaver&gt;</pre><ul>
+<li><a href="qwsscreensaver-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h3>Public Functions</h3>
+<ul>
+<li><div class="fn"/>virtual <b><a href="qwsscreensaver.html#dtor.QWSScreenSaver">~QWSScreenSaver</a></b> ()</li>
+<li><div class="fn"/>virtual void <b><a href="qwsscreensaver.html#restore">restore</a></b> () = 0</li>
+<li><div class="fn"/>virtual bool <b><a href="qwsscreensaver.html#save">save</a></b> ( int <i>level</i> ) = 0</li>
+</ul>
+<a name="details"></a>
+<hr />
+<h2>Detailed Description</h2>
+<p>The QWSScreenSaver class is a base class for screensavers in Qtopia Core.</p>
+<p>When running <a href="qtopiacore.html">Qtopia Core</a> applications, it is the server application that installs and controls the screensaver. <a href="qtopiacore.html">Qtopia Core</a> supports multilevel screen saving, i.e&#x2e;, it is possible to specify several different levels of screen responsiveness. For example, you can choose to first turn off the light before you fully activate the screensaver.</p>
+<p>Note that there exists no default screensaver implementation.</p>
+<p>To create a custom screensaver, derive from this class and reimplement the <a href="qwsscreensaver.html#restore">restore</a>() and <a href="qwsscreensaver.html#save">save</a>() functions. These functions are called whenever the screensaver is activated or deactivated, respectively. Once an instance of your custom screensaver is created, you can use the <a href="qwsserver.html#setScreenSaver">QWSServer::setScreenSaver</a>() function to install it.</p>
+<p>See also <a href="qwsserver.html">QWSServer</a>, <a href="qscreen.html">QScreen</a>, and <a href="qtopiacore.html">Qtopia Core</a>.</p>
+<hr />
+<h2>Member Function Documentation</h2>
+<h3 class="fn"><a name="dtor.QWSScreenSaver"></a>QWSScreenSaver::~QWSScreenSaver ()&nbsp;&nbsp;<tt> [virtual]</tt></h3>
+<p>Reimplement this function to destroy the screensaver.</p>
+<h3 class="fn"><a name="restore"></a>void QWSScreenSaver::restore ()&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implement this function to deactivate the screensaver, restoring the previously saved screen.</p>
+<p>See also <a href="qwsscreensaver.html#save">save</a>() and <a href="qwsserver.html#screenSaverActivate">QWSServer::screenSaverActivate</a>().</p>
+<h3 class="fn"><a name="save"></a>bool QWSScreenSaver::save ( int <i>level</i> )&nbsp;&nbsp;<tt> [pure virtual]</tt></h3>
+<p>Implement this function to activate the screensaver, saving the current screen.</p>
+<p><a href="qtopiacore.html">Qtopia Core</a> supports multilevel screen saving, i.e&#x2e;, it is possible to specify several different levels of screen responsiveness. For example, you can choose to first turn off the light before you fully activate the screensaver. Use the <a href="qwsserver.html#setScreenSaverIntervals">QWSServer::setScreenSaverIntervals</a>() to specify the time intervals between the different levels.</p>
+<p>This function should return true if the screensaver successfully enters the given <i>level</i>; otherwise it should return false.</p>
+<p>See also <a href="qwsscreensaver.html#restore">restore</a>() and <a href="qwsserver.html#screenSaverActivate">QWSServer::screenSaverActivate</a>().</p>
+<p /><address><hr /><div align="center">
+<table width="100%" cellspacing="0" border="0"><tr class="address">
+<td width="30%">Copyright &copy; 2008 <a href="trolltech.html">Trolltech</a></td>
+<td width="40%" align="center"><a href="trademarks.html">Trademarks</a></td>
+<td width="30%" align="right"><div align="right">Qt 4.3.5</div></td>
+</tr></table></div></address></body>
+</html>
