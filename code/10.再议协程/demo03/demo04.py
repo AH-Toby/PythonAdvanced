@@ -6,6 +6,7 @@ def my_generator():
             yield i
 
 
+# 委派生成器
 def wrap_my_generator(generator):  # 定义一个包装“生成器”的生成器，它的本质还是生成器
     result = yield from generator  # 自动触发StopIteration异常，并且将return的返回值赋值给yield from表达式的结果，即result
     print(result)
