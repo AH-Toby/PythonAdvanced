@@ -1,4 +1,4 @@
-# œPythonAdvanced
+# PythonAdvanced
 
 内容承接PythonBasic,想学习基础请观看PythonBasic工程
 
