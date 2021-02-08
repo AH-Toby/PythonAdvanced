@@ -8,10 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/code/8.python高级知识mini-web框架案例/demo01" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/code/8.python高级知识mini-web框架案例/demo02" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>
