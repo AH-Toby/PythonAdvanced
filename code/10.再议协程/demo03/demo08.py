@@ -17,8 +17,8 @@ def reader(text):
 def proxyReader(text):
     before()  # 开始读之前运维需求处理
     result = yield from reader(text)
-    return result
     after()  # 结束读之后运维需求处理
+    return result
 
 
 # app是定义的一个简单应用，将reader读出的值打印出来

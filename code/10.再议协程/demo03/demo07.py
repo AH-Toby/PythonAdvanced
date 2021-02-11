@@ -22,9 +22,8 @@ def proxyReader(text):
             line = next(r)
             yield line
     except StopIteration as e:
+        after()  # 结束读之后运维需求处理
         return e.value
-
-    after()  # 结束读之后运维需求处理
 
 
 # app是定义的一个简单应用，将reader读出的值打印出来
