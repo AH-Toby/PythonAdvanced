@@ -1,0 +1,13 @@
+[[source]]
+url = "http://pypi.douban.com/simple/"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyqt5 = "*"
+pyqt5-tools = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
