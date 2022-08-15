@@ -26,6 +26,8 @@ class Window(QWidget):
 
         inp2 = QTextEdit(self)
         inp2.setText("多行文本输入框")
+
+
         inp2.resize(180, 90)
         inp2.move(150, 100)
 
