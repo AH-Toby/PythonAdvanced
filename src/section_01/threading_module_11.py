@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：threading_module_11.py
+@Author  ：Toby
+@Date    ：2022/11/21 20:23 
+@Description：多线程死锁错误演示
+"""
 import threading
 import time
 

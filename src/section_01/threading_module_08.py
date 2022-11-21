@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：threading_module_08.py
+@Author  ：Toby
+@Date    ：2022/11/21 20:12 
+@Description：多线程资源竞争问题
+"""
 import threading
 import time
 
@@ -20,10 +29,10 @@ def work2(num):
 
 print("---线程创建之前g_num is %d---" % g_num)
 
-t1 = threading.Thread(target=work1, args=(1000000,))
+t1 = threading.Thread(target=work1, args=(10,))
 t1.start()
 
-t2 = threading.Thread(target=work2, args=(1000000,))
+t2 = threading.Thread(target=work2, args=(10,))
 t2.start()
 
 while len(threading.enumerate()) != 1:

@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：threading_module_07.py
+@Author  ：Toby
+@Date    ：2022/11/21 20:11 
+@Description：线程利用可变类型进行数据共享
+"""
 from threading import Thread
 import time
 
@@ -20,3 +29,4 @@ t1.start()
 
 t2 = Thread(target=work2, args=(g_nums,))
 t2.start()
+

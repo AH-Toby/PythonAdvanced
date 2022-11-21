@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：threading_module_06.py
+@Author  ：Toby
+@Date    ：2022/11/21 20:10 
+@Description：多线程利用全局变量进行数据共享
+"""
 from threading import Thread
 import time
 

@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：threading_module_10.py
+@Author  ：Toby
+@Date    ：2022/11/21 20:20 
+@Description：利用互斥锁来解决多线程资源竞争问题
+"""
 import threading
 import time
 
