@@ -1,5 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：multiprocessing_module_02.py
+@Author  ：Toby
+@Date    ：2022/11/22 17:35 
+@Description：进程pid
+"""
 import os
-import time
 from multiprocessing import Process
 
 
@@ -13,3 +21,4 @@ if __name__ == '__main__':
     print("父进程pid=%s" % os.getpid())
     p = Process(target=run_proc)
     p.start()
+

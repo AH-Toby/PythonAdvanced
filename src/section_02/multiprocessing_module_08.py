@@ -1,6 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：multiprocessing_module_08.py
+@Author  ：Toby
+@Date    ：2022/11/22 17:54 
+@Description：进程池中的Queue
+"""
+
 # 修改import中的Queue为Manager
+import os
+import time
 from multiprocessing import Manager, Pool
-import os, time, random
 
 
 def reader(q):
@@ -27,3 +38,4 @@ if __name__ == "__main__":
     po.close()
     po.join()
     print("(%s) End" % os.getpid())
+

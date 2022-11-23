@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：multiprocessing_module_04.py
+@Author  ：Toby
+@Date    ：2022/11/22 17:39 
+@Description：进程间全局变量
+"""
 import os
 import time
 from multiprocessing import Process

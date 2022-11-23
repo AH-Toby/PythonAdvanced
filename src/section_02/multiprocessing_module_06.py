@@ -1,5 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：multiprocessing_module_06.py
+@Author  ：Toby
+@Date    ：2022/11/22 17:46 
+@Description：使用queue进行进程间通信
+"""
 from multiprocessing import Process, Queue
-import os, time, random
+import time
+import random
 
 
 # 写数据进程执行的代码

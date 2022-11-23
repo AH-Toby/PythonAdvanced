@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：multiprocessing_module_01.py
+@Author  ：Toby
+@Date    ：2022/11/22 17:32 
+@Description：multiprocessing模块
+"""
 from multiprocessing import Process
 import time
 
@@ -15,3 +24,5 @@ if __name__ == '__main__':
     while 1:
         print("----1----")
         time.sleep(1)
+
+

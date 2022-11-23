@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：multiprocessing_module_03.py
+@Author  ：Toby
+@Date    ：2022/11/22 17:37 
+@Description：进程函数传递参数
+"""
 import os
 import time
 from multiprocessing import Process
@@ -19,3 +28,4 @@ if __name__ == '__main__':
     time.sleep(0.1)  # 0.1秒后结束进程
     p.terminate()
     p.join()
+

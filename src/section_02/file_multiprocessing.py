@@ -1,9 +1,17 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：file_multiprocessing.py
+@Author  ：Toby
+@Date    ：2022/11/23 10:20 
+@Description：文件赋值进程
+"""
 # 完成将一个文件夹和文件复制到另一个文件夹中
 import os
 import multiprocessing
 
 # 1.定义一个文件夹复制器的类
-import time
 
 
 class FolderCopy(object):

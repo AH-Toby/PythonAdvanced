@@ -1,5 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：multiprocessing_module_07.py
+@Author  ：Toby
+@Date    ：2022/11/22 17:51 
+@Description：
+"""
+import os
+import time
+import random
 from multiprocessing import Pool
-import os, time, random
 
 
 def run_po(msg):

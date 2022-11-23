@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：multiprocessing_module_05.py
+@Author  ：Toby
+@Date    ：2022/11/22 17:42 
+@Description：进程间通信
+"""
 from multiprocessing import Queue
 
 
