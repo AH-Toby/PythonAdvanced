@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：web_module_03.py
+@Author  ：Toby
+@Date    ：2022/12/2 16:46 
+@Description：udp发送接收器
+"""
 from socket import *
 
 # 1. 创建udp套接字

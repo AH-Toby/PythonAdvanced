@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：web_module_04.py
+@Author  ：Toby
+@Date    ：2022/12/2 16:47 
+@Description：TCP客户端
+"""
 from socket import *
 
 # 创建套接字
@@ -18,5 +27,3 @@ print(data)
 
 # 关闭套接字
 tcp_client.close()
-
-

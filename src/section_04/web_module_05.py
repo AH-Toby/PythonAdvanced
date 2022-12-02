@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：web_module_05.py
+@Author  ：Toby
+@Date    ：2022/12/2 16:49 
+@Description：TCP服务端
+"""
 from socket import *
 
 # 1. socket创建一个套接字

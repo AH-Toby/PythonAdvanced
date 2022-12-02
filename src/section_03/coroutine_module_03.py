@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：coroutine_module_03.py
+@Author  ：Toby
+@Date    ：2022/11/28 14:34 
+@Description：迭代器示例斐波那契数列
+"""
 """
 举个例子，比如，数学中有个著名的斐波拉契数列（Fibonacci），数列中第一个数为0，第二个数为1，其后的每一个数都可由前两个数相加得到：
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...

@@ -1,3 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：coroutine_module_02.py
+@Author  ：Toby
+@Date    ：2022/11/23 10:34 
+@Description：自定义迭代器
+"""
+
+
 class MyIterator(object):
     """自定义一个迭代器"""
 

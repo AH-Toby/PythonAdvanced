@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：web_module_02.py
+@Author  ：Toby
+@Date    ：2022/12/2 16:39 
+@Description：网络编程udp服务端
+"""
 from socket import *
 
 
@@ -18,3 +27,4 @@ if __name__ == '__main__':
     port = 8989
     rec = RecvMSG(ip=ip, port=port)
     rec.recv_msg()
+

@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：coroutine_module_04.py
+@Author  ：Toby
+@Date    ：2022/11/28 14:42 
+@Description：
+"""
 """
 用生成器完成斐波那契数组
 """
@@ -15,9 +24,10 @@ def Fib(nums):
     return 'done'
 
 
-f = Fib(5)
-for i in Fib(5):
-    print(i)
+if __name__ == '__main__':
+    f = Fib(5)
+    for i in Fib(5):
+        print(i)
 # print(next(f))
 # print(next(f))
 # print(next(f))

@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Project ：PythonAdvanced 
+@File    ：web_module_01.py
+@Author  ：Toby
+@Date    ：2022/12/2 16:37 
+@Description：网络编程UDP客户端
+"""
 from socket import *
 
 
@@ -26,8 +35,8 @@ class SendMSG(object):
 
 
 if __name__ == '__main__':
-    ip = "192.168.1.105"
+    ip = "10.5.8.20"
     port = 8080
-    udp = SendMSG(ip=ip,port=port)
+    udp = SendMSG(ip=ip, port=port)
     msg = input("请输入要发送的数据:")
     udp.send_msg(msg=msg)
