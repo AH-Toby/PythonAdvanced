@@ -8,6 +8,7 @@ from threading import Thread
 
 g_num = 100
 
+
 def work1():
     global g_num
     g_num += 3

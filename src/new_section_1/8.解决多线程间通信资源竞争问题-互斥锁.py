@@ -1,9 +1,12 @@
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2023/9/1 00:19
+# @Time    : 2023/9/3 23:57
 # @Author  : toby
-# @File    : 7.多线程线程间通信资源竞争问题.py
+# @File    : 8.解决多线程间通信资源竞争问题-互斥锁.py
 # @Software: PyCharm
-# @Desc:
+# @Desc:使用线程同步机制互斥锁
+
+
 import threading
 
 # 共享资源
@@ -13,14 +16,21 @@ counter = 0
 def increment():
     global counter
     for _ in range(100000):
+        mutex.acquire()  # 加锁  当其获取到锁对象后会立刻进入锁定状态，直到释放锁该状态才会解锁
         counter += 1
+        mutex.release()  # 解锁
 
 
 def decrement():
     global counter
     for _ in range(100000):
+        mutex.acquire()  # 加锁
         counter -= 1
+        mutex.release()  # 解锁
 
+
+# 创建线程锁对象
+mutex = threading.Lock()
 
 # 创建多个线程并启动
 t1 = threading.Thread(target=increment)
