@@ -7,6 +7,7 @@
 # @Desc:
 import asyncio
 
+
 async def my_coroutine():
     await asyncio.sleep(1)
     print("Coroutine completed")
