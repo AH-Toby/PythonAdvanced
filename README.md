@@ -16,134 +16,144 @@ python高级用法知识，涵盖多线程、并发、协程、网络编程，�
 
 [4.解决线程间数据分享存在的问题](./docs/4.解决线程间分享数据存在的问题.md)
 
-
+[5.解决线程间通信共享数据](./docs/5.解决线程间通信共享数据.md)
 
 ## 2.python高级知识-多进程
 
-[1.进程及状态与multprocesing模块](./docs/5.进程及状态与multprocesing模块.md)
+[1.进程及状态与multprocesing模块](./docs/6.进程及状态与multprocesing模块.md)
 
-[2.进程和线程比较与进程间通信](./docs/6.进程和线程比较与进程间通信.md)
+[2.进程的创建-进程池Pool](./docs/7.进程的创建-进程池Pool.md)
 
-[3.进程的创建-进程池Pool](./docs/7.进程的创建-进程池Pool.md)
+[3.进程间数据通信共享数据](./docs/8.进程间数据通信共享数据.md)
 
-[4.进程实用案例：文件夹copy](./docs/8.进程实用案例：文件夹copy.md)
+[4.进程和线程比较与进程间通信](./docs/9.进程和线程比较与进程间通信.md)
 
+[5.进程实用案例：文件夹copy](./docs/10.进程实用案例：文件夹copy.md)
 
+## 3.python高级知识-迭代器生成器
 
-## 3.python高级知识-协程
+[1.迭代器](./docs/11.迭代器.md)
 
-[1.迭代器](./docs/9.迭代器.md)
+[2.生成器](./docs/12.生成器.md)
 
-[2.生成器](./docs/10.生成器.md)
+## 4.python高级知识-协程
 
-[3.协程yield](./docs/11.协程-yield.md)
+[1.greenlet](./docs/13.协程-greenlet.md)
 
-[4.协程greenlet](./docs/12.协程-greenlet.md)
+[2.gevent](./docs/14.协程-gevent.md)
 
-[5.协程gevent](./docs/13.协程-gevent.md)
+[3.yield](./docs/15.协程-yield.md)
 
-[6.进程、线程、协程区别](./docs/14.进程、线程、协程区别.md)
+[4.进程线程协程区别](./docs/16.进程线程协程区别.md)
 
+[5.进程线程协程详解](./docs/17.进程线程协程详解.md)
 
+[6.多任务重要概念](./docs/18.多任务重要概念.md)
 
-## 4.python网络编程
+[7.协程-生成器](./docs/19.协程-生成器.md)
 
-[1.认识互联网](./docs/15.认识互联网.md)
+[8.协程-理解和yield实现](./docs/20.协程-理解和yield实现.md)
 
-[2.SOCKET](./docs/16.socket.md)
+[9.协程-yieldfrom详](./docs/21.协程-yieldfrom详解.md)
 
-[3.python-udp](./docs/17.python-udp.md)
+[10.协程-asyncio的核心概念](./docs/22.协程-asyncio的核心概念.md)
 
-[4.编码转换问题](./docs/18.编码转换.md)
+[11.协程-asyncio基本架构](./docs/23.协程-asyncio基本架构.md)
 
-[5.tcp](./docs/19.tcp.md)
+[12.协程-Task类详解](./docs/24.协程-Task类详解.md)
 
-[6.python-tcp](./docs/20.python-tcp.md)
+[13.协程-异步编程基本模板](./docs/25.协程-异步编程基本模板.md)
 
-[7.tcp三次握手和四次挥手](./docs/21.tcp三次握手四次挥手.md)
+[14.协程-事件循环EventLoop](./docs/26.协程-事件循环EventLoop.md)
 
-[8.tcp长连接和短链接](./docs/22.tcp长连接和短链接.md)
+[15.协程-Future类详解](./docs/27.协程-Future类详解.md)
 
-[9.tcp/ip](./docs/23.tcp-ip.md)
+[16.协程-常见问题](./docs/28.协程-常见问题.md)
 
+[17.协程-多任务实现并发](./docs/29.协程-多任务实现并发.md)
 
+[18.协程-结合多线程解决阻塞问题以及timer模拟](./docs/30.协程-结合多线程解决阻塞问题以及timer模拟.md)
 
-## 5.python高级知识-进阶知识
+## 5.python网络编程
 
-[1.GIL全局解释器锁](./docs/24.GIL全局解释器锁.md)
+[1.认识互联网](./docs/31.认识互联网.md)
 
-[2.深拷贝、浅拷贝](./docs/25.深拷贝、浅拷贝.md)
+[2.SOCKET](./docs/32.socket.md)
 
-[3.私有化](./docs/26.私有化.md)
+[3.python-udp](./docs/33.python-udp.md)
 
-[4.import导入模块](./docs/27.import导入模块.md)
+[4.编码转换问题](./docs/34.编码转换.md)
 
-[5.多继承以及MRO顺序](./docs/28.多继承以及MRO顺序.md)
+[5.tcp](./docs/35.tcp.md)
 
-[6.再论静态方法和类方法](./docs/29.再论静态方法和类方法.md)
+[6.python-tcp](./docs/36.python-tcp.md)
 
-[7.再议封装、多态、继承](./docs/30.再议封装、多态、继承.md)
+[7.tcp三次握手和四次挥手](./docs/37.tcp三次握手四次挥手.md)
 
-[8.property属性](./docs/31.property属性.md)
+[8.tcp长连接和短链接](./docs/38.tcp长连接和短链接.md)
 
-[9.魔法属性](./docs/32.魔法属性.md)
+[9.tcp/ip](./docs/39.tcp-ip.md)
 
-[10.with与上下文管理器](./docs/33.with与上下文管理器.md)
 
 
+## 6.python高级知识-进阶知识
 
-## 6.闭包与装饰器
+[1.GIL全局解释器锁](./docs/40.GIL全局解释器锁.md)
 
-[1.闭包](./docs/34.闭包.md)
+[2.深拷贝、浅拷贝](./docs/41.深拷贝、浅拷贝.md)
 
-[2.装饰器](./docs/35.装饰器.md)
+[3.私有化](./docs/42.私有化.md)
 
+[4.import导入模块](./docs/43.import导入模块.md)
 
+[5.多继承以及MRO顺序](./docs/44.多继承以及MRO顺序.md)
 
-## 7.python高级知识-http服务器案例
+[6.再论静态方法和类方法](./docs/45.再论静态方法和类方法.md)
 
-[1.http协议](./docs/36.http协议.md)
+[7.再议封装、多态、继承](./docs/46.再议封装、多态、继承.md)
 
-[2.web服务器](./docs/37.web服务器.md)
+[8.property属性](./docs/47.property属性.md)
 
-[3.非阻塞式web服务器](./docs/38.非阻塞式web服务器.md)
+[9.魔法属性](./docs/48.魔法属性.md)
 
-[4.web服务器epoll](./docs/39.web服务器epoll.md)
+[10.with与上下文管理器](./docs/49.with与上下文管理器.md)
 
+## 7.闭包与装饰器
 
+[1.闭包](./docs/50.闭包.md)
 
-##  8.python高级知识mini-web框架案例
+[2.装饰器](./docs/51.装饰器.md)
 
-[1.WSGI](./docs/40.WSGI.md)
+## 8.python高级知识-http服务器案例
 
-[2.Mini-WEb框架实现1](./docs/41.Mini-WEb框架实现1.md)
+[1.http协议](./docs/52.http协议.md)
 
-[3.Mini-WEb框架实现2](./docs/42.Mini-WEb框架实现2.md)
+[2.web服务器](./docs/53.web服务器.md)
 
-[4.Mini-WEb框架实现3](./docs/43.Mini-WEB框架实现3.md)
+[3.非阻塞式web服务器](./docs/54.非阻塞式web服务器.md)
 
-[5.Mini-WEB框架添加日志功能](./docs/44.Mini-WEB框架添加日志功能.md)
+[4.web服务器epoll](./docs/55.web服务器epoll.md)
 
+##  9.python高级知识mini-web框架案例
 
+[1.WSGI](./docs/56.WSGI.md)
 
-## 9.python高级知识-元类
+[2.Mini-WEb框架实现1](./docs/57.Mini-WEb框架实现1.md)
 
-[1.元类](./docs/45.元类.md)
+[3.Mini-WEb框架实现2](./docs/58.Mini-WEb框架实现2.md)
 
-[2.使用元类创建类](./docs/46.使用元类创建类.md)
+[4.Mini-WEb框架实现3](./docs/59.Mini-WEB框架实现3.md)
 
-[3.元类改变类](./docs/47.元类编写orm.md)
+[5.Mini-WEB框架添加日志功能](./docs/60.Mini-WEB框架添加日志功能.md)
 
-[4.元类编写orm](./docs/48.元类改变类.md)
 
 
+## 10.python高级知识-元类
 
-## 10.再议协程
+[1.元类](./docs/61.元类.md)
 
-[1.从生成器和yield表达式说起](./docs/49.从生成器和yield表达式说起.md)
+[2.使用元类创建类](./docs/62.使用元类创建类.md)
 
-[2.协程的简单理解及yield关键字实现协程](./docs/50.协程的简单理解及yield关键字实现协程.md)
+[3.元类改变类](./docs/63.元类编写orm.md)
 
-[3.yield from详解](./docs/51.yield%20from详解.md)
-
-[4.同步异步、并发并行、线程进程](./docs/52.同步异步、并发并行、线程进程.md)
+[4.元类编写orm](./docs/64.元类改变类.md)
