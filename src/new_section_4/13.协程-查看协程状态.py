@@ -1,24 +1,21 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2023/9/14 10:47
+# @Time    : 2023/9/19 16:32
 # @Author  : toby
-# @File    : 9.协程的状态.py
+# @File    : 13.协程-查看协程状态.py
 # @Software: PyCharm
 # @Desc:
-from inspect import getgeneratorstate  # 一定要导入
-from time import sleep
+import time
+from inspect import getgeneratorstate
 
 
-def my_generator():
+def test_generator():
     for i in range(3):
-        sleep(0.5)
+        time.sleep(0.5)
         x = yield i + 1
 
 
-g = my_generator()  # 创建一个生成器对象
-
-
-def main(generator):
+def main(g):
     try:
         print(f"生成器初始状态为:{getgeneratorstate(g)}")
         next(g)  # 激活生成器
@@ -33,4 +30,5 @@ def main(generator):
         print(f"生成器初始状态为:{getgeneratorstate(g)}")
 
 
+g = test_generator()
 main(g)

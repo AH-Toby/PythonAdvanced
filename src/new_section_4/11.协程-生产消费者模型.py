@@ -1,10 +1,11 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2023/9/14 10:34
+# @Time    : 2023/9/18 23:45
 # @Author  : toby
-# @File    : 7.协程-yield实现协程1.py
+# @File    : 11.协程-生产消费者模型.py
 # @Software: PyCharm
-# @Desc: yield实现协程，生产-消费者模型
+# @Desc:
+
 
 def consumer():
     r = ''

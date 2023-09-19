@@ -1,10 +1,11 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2023/9/14 15:11
+# @Time    : 2023/9/19 16:57
 # @Author  : toby
-# @File    : 12.协程yieldfrom高级用法2.py
+# @File    : 15.协程-yieldfrom获取return返回值.py
 # @Software: PyCharm
 # @Desc:
+
 def test_generator():
     for i in range(5):
         if i == 2:
@@ -12,16 +13,14 @@ def test_generator():
         yield i
 
 
-def wrap_test_generator(g):
-    result = yield from g
-    print(result)
-
-
 def main(g):
-    for j in g:
-        print(j)
+    try:
+        for i in g:
+            print(i)
+    except StopIteration as e:
+        print(e.value)  # 无法获取到
 
 
 g = test_generator()
-g = wrap_test_generator(g)
+
 main(g)

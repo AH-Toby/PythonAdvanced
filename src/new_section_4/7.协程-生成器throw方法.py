@@ -1,10 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2023/9/13 16:36
+# @Time    : 2023/9/18 22:56
 # @Author  : toby
-# @File    : 5.协程-生成器throw方法.py
+# @File    : 7.协程-生成器throw方法.py
 # @Software: PyCharm
 # @Desc:
+
+
 # def throw_generator():
 #     yield 'a'
 #     yield 'b'
@@ -14,7 +16,7 @@
 # g = throw_generator()
 # print(next(g))
 # print(next(g))
-# print('-------------------------')
+# print("---" * 30)
 # print(g.throw(StopIteration))
 # print(next(g))
 
@@ -44,6 +46,7 @@
 # print(g.throw(TypeError))
 # print('-------------------------')
 # print(next(g))
+
 
 def my_generator():
     while True:
