@@ -5,8 +5,13 @@
 # @File    : person.py
 # @Software: PyCharm
 # @Desc:
-_from_package = "导包测试"
 
+"""
+This is the docstring of my_module.
+It provides information about the module.
+"""
+
+_from_package = "导包测试"
 
 class Person(object):
     def __init__(self, name, age, taste):
