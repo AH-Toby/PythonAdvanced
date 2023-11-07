@@ -1,0 +1,4 @@
+2023-11-07 23:04:12,130 - 5.日志写入控制台和文件.py[line:34] - INFO: 这是 loggging info message
+2023-11-07 23:04:12,131 - 5.日志写入控制台和文件.py[line:35] - WARNING: 这是 loggging a warning message
+2023-11-07 23:04:12,131 - 5.日志写入控制台和文件.py[line:36] - ERROR: 这是 an loggging error message
+2023-11-07 23:04:12,131 - 5.日志写入控制台和文件.py[line:37] - CRITICAL: 这是 loggging critical message
