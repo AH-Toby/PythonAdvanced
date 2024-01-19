@@ -15,8 +15,9 @@ class CC(object):
 cc = CC()
 cc.test()
 
-xx = cc
-xx.test()
+xx = CC
+bb = xx()
+bb.test()
 
 print(cc.__class__)  # 查看创建者
 print(cc.__class__.__class__)
